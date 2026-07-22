@@ -1,4 +1,4 @@
-from Impulse.config import COLLECTION
+from config import COLLECTION
 
 
 def store_post(
@@ -25,8 +25,10 @@ def get_all_posts():
 
 def delete_all_posts():
 
-    COLLECTION.delete(
-        ids=COLLECTION.get()["ids"]
-    )
+    ids = COLLECTION.get()["ids"]
 
-    print("Database cleared.")
+    if ids:
+        COLLECTION.delete(ids=ids)
+        print(f"Deleted {len(ids)} posts.")
+    else:
+        print("Collection already empty.")

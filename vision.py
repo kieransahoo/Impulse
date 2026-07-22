@@ -1,10 +1,13 @@
 import json
 import time
+import requests
+from io import BytesIO
+from PIL import Image
 
 from PIL import Image
 from google.genai.errors import ServerError
 
-from Impulse.config import client, GEMINI_MODEL
+from config import client, GEMINI_MODEL
 
 VISION_PROMPT = """
 Analyze this Instagram image.
@@ -21,9 +24,12 @@ Return ONLY valid JSON.
 """
 
 
-def describe_image(image_path):
+def describe_image(image_url):
 
-    image = Image.open(image_path)
+    response = requests.get(image_url)
+    response.raise_for_status()
+
+    image = Image.open(BytesIO(response.content))
 
     for attempt in range(5):
 

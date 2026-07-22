@@ -1,81 +1,117 @@
-from Impulse.vision import describe_image
-from Impulse.llm import summarize_post
-from Impulse.embeddings import create_embedding
-from Impulse.chroma_store import store_post
+from posts import POSTS
 
-caption = """
-The flower is so pink and beautiful.
+from vision import describe_image
+from llm import summarize_post
+from document_builder import build_document
 
-#Flower #Nature #Pink
-"""
+from embeddings import create_embedding
+from chroma_store import store_post, delete_all_posts
 
-print("=" * 50)
-print("STEP 1 : IMAGE ANALYSIS")
-print("=" * 50)
 
-vision = describe_image("images/flower.jpg")
+def ingest_posts():
 
-print(vision)
+    print("=" * 60)
+    print("CreatorBrain Ingestion Started")
+    print("=" * 60)
 
-print()
+    # Remove previously stored vectors
+    delete_all_posts()
 
-print("=" * 50)
-print("STEP 2 : LLM SUMMARY")
-print("=" * 50)
+    print("\nOld ChromaDB collection cleared.\n")
 
-summary = summarize_post(
-    caption,
-    vision["description"]
-)
+    total_posts = len(POSTS)
 
-print(summary)
+    for index, post in enumerate(POSTS, start=1):
 
-document = f"""
-Caption:
-{caption}
+        print(f"[{index}/{total_posts}] Processing {post['id']}")
 
-Image Description:
-{vision["description"]}
+        # -----------------------------
+        # Vision
+        # -----------------------------
+        vision = describe_image(post["image"])
 
-Summary:
-{summary["summary"]}
+        # -----------------------------
+        # LLM Extraction
+        # -----------------------------
+        data = summarize_post(
+            caption=post["caption"],
+            hashtags=post["hashtags"],
+            image_description=vision["description"]
+        )
 
-Topics:
-{", ".join(summary["topics"])}
+        if data is None:
+            print(f"❌ Failed to process {post['id']}")
+            continue
 
-Keywords:
-{", ".join(summary["keywords"])}
+        # -----------------------------
+        # Build document
+        # -----------------------------
+        document = build_document(
+            caption=post["caption"],
+            hashtags=post["hashtags"],
+            vision=vision,
+            data=data
+        )
 
-Category:
-{summary["category"]}
-"""
+        # -----------------------------
+        # Embedding
+        # -----------------------------
+        embedding = create_embedding(document)
 
-print()
+        # -----------------------------
+        # Metadata
+        # -----------------------------
+        metadata = {
 
-print("=" * 50)
-print("STEP 3 : EMBEDDING")
-print("=" * 50)
+            "domain": data["domain"],
 
-embedding = create_embedding(document)
+            "summary": data["summary"],
 
-print("Embedding Length:", len(embedding))
-metadata = {
-    "category": summary["category"],
-    "summary": summary["summary"],
-    "caption": caption
-}
+            "budget": data["budget"],
 
-store_post(
-    post_id="post_1",
-    document=document,
-    embedding=embedding,
-    metadata=metadata
-)
+            "occasion": ",".join(data["occasion"]),
 
-print()
+            "hashtags": ",".join(post["hashtags"]),
 
-print("=" * 50)
-print("DOCUMENT")
-print("=" * 50)
+            "cities": ",".join(
+                data["entities"]["cities"]
+            ),
 
-print(document)
+            "places": ",".join(
+                data["entities"]["places"]
+            ),
+
+            "cafes": ",".join(
+                data["entities"]["cafes"]
+            ),
+
+            "restaurants": ",".join(
+                data["entities"]["restaurants"]
+            ),
+
+            "brands": ",".join(
+                data["entities"]["brands"]
+            ),
+
+            "caption": post["caption"]
+        }
+
+        # -----------------------------
+        # Store
+        # -----------------------------
+        store_post(
+            post_id=post["id"],
+            document=document,
+            embedding=embedding,
+            metadata=metadata
+        )
+
+        print(f"✅ Stored {post['id']}\n")
+
+    print("=" * 60)
+    print("🎉 All posts successfully ingested!")
+    print("=" * 60)
+
+
+if __name__ == "__main__":
+    ingest_posts()

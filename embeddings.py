@@ -1,4 +1,4 @@
-from Impulse.config import embedding_model
+from config import embedding_model
 
 
 def create_embedding(text):

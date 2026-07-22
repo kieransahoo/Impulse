@@ -1,57 +1,104 @@
 import json
 import time
+from config import client, GEMINI_MODEL
 
-from google.genai.errors import ServerError
+def summarize_post(caption, hashtags, image_description):
 
-from Impulse.config import client, GEMINI_MODEL
+    prompt = f"""
+You are an information extraction system.
 
-SYSTEM_PROMPT = """
-You are an AI assistant.
+Given an Instagram caption and image description, extract structured information
+that can be used later by an AI assistant for recommendations.
 
-Given an Instagram caption and image description,
-generate metadata.
+Possible domains:
+- cafe
+- restaurant
+- travel
+- shopping
+- recipe
+- fitness
+- technology
+- fashion
+- movie
+- book
+- event
+- general
 
 Return ONLY valid JSON.
 
-{
-    "summary": "",
-    "topics": [],
-    "keywords": [],
-    "category": ""
-}
-"""
+JSON Schema:
 
+{{
+  "domain":"",
+  "summary":"",
+  "topics":[],
+  "keywords":[],
 
-def summarize_post(caption, image_description):
+  "entities":{{
+      "places":[],
+      "restaurants":[],
+      "cafes":[],
+      "cities":[],
+      "countries":[],
+      "brands":[],
+      "products":[],
+      "people":[]
+  }},
 
-    prompt = f"""
+  "recommendations":[
+      {{
+          "name":"",
+          "type":"",
+          "location":"",
+          "budget":"",
+          "best_for":[],
+          "features":[]
+      }}
+  ],
+
+  "activities":[],
+  "budget":"",
+  "occasion":[],
+  "searchable_facts":[],
+  "hashtags":[],
+  "sentiment":""
+}}
+
 Caption:
-
 {caption}
 
 Image Description:
-
 {image_description}
+
+Do not invent facts.
+
+If something is unavailable use "" or [].
 """
 
-    for attempt in range(5):
+    for attempt in range(3):
 
         try:
 
             response = client.models.generate_content(
                 model=GEMINI_MODEL,
-                contents=SYSTEM_PROMPT + prompt
+                contents=prompt
             )
 
             text = response.text.strip()
-            text = text.replace("```json", "").replace("```", "").strip()
+
+            if text.startswith("```"):
+                text = text.split("```")[1]
+                if text.startswith("json"):
+                    text = text[4:]
+                text = text.strip()
 
             return json.loads(text)
 
-        except ServerError:
+        except Exception as e:
 
-            wait = 2 ** attempt
-            print(f"LLM busy... retrying in {wait}s")
-            time.sleep(wait)
+            print(e)
 
-    raise Exception("LLM API unavailable.")
+            if attempt < 2:
+                time.sleep(2 ** attempt)
+
+    return None
