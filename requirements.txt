@@ -1,0 +1,15 @@
+chromadb==1.0.15
+
+sentence-transformers==5.0.0
+transformers==4.54.1
+torch>=2.3.0
+
+google-genai==1.28.0
+
+Pillow==11.3.0
+
+python-dotenv==1.1.1
+
+numpy==2.3.2
+
+tqdm==4.67.1
