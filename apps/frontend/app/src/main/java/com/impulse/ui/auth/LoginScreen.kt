@@ -1,28 +1,63 @@
 package com.impulse.ui.auth
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AutoAwesome
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.impulse.ui.theme.*
-import kotlinx.coroutines.launch
+import com.impulse.ui.theme.DividerColor
+import com.impulse.ui.theme.ErrorColor
+import com.impulse.ui.theme.Hint
+import com.impulse.ui.theme.Ink
+import com.impulse.ui.theme.Paper
+import com.impulse.ui.theme.Primary
+import com.impulse.ui.theme.SurfaceBright
 
 @Composable
 fun LoginScreen(
@@ -31,232 +66,179 @@ fun LoginScreen(
 ) {
     val context = LocalContext.current
     val uiState by viewModel.uiState.collectAsState()
-    val coroutineScope = rememberCoroutineScope()
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var registering by remember { mutableStateOf(false) }
 
     LaunchedEffect(uiState) {
         if (uiState is LoginUiState.Success) onLoginSuccess()
     }
 
-    Box(
+    val submit = {
+        if (registering) viewModel.register(context, email, password)
+        else viewModel.signIn(context, email, password)
+    }
+
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    colorStops = arrayOf(
-                        0.0f to Color(0xFF0D0D1A),
-                        0.5f to Color(0xFF1A0A2E),
-                        1.0f to Color(0xFF0D0D1A)
-                    )
-                )
-            )
+            .background(Paper)
+            .verticalScroll(rememberScrollState())
+            .statusBarsPadding()
+            .navigationBarsPadding()
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Decorative glow blobs
-        GlowBlob(
-            modifier = Modifier
-                .align(Alignment.TopStart)
-                .offset((-60).dp, (-60).dp),
-            color = Primary.copy(alpha = 0.12f),
-            size = 280.dp
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            ImpulseMark()
+            Spacer(Modifier.size(10.dp))
+            Text("Impulse", style = MaterialTheme.typography.titleMedium)
+        }
+        Spacer(Modifier.height(48.dp))
+        Text("PERSONAL MEMORY ENGINE", style = MaterialTheme.typography.labelSmall, color = Primary)
+        Spacer(Modifier.height(12.dp))
+        Text(
+            if (registering) "Create your memory space." else "Welcome back.",
+            style = MaterialTheme.typography.displaySmall,
+            color = Ink,
+            textAlign = TextAlign.Center
         )
-        GlowBlob(
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .offset(60.dp, 60.dp),
-            color = Secondary.copy(alpha = 0.10f),
-            size = 220.dp
+        Spacer(Modifier.height(12.dp))
+        Text(
+            if (registering) "Save useful content and turn it into plans you can act on."
+            else "Sign in to use everything you have saved.",
+            style = MaterialTheme.typography.bodyMedium,
+            color = Hint,
+            textAlign = TextAlign.Center
         )
+        Spacer(Modifier.height(32.dp))
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .statusBarsPadding()
-                .navigationBarsPadding()
-                .padding(horizontal = 32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            // ── App logo ──────────────────────────────────────────────────────
-            Box(
-                modifier = Modifier
-                    .size(96.dp)
-                    .clip(RoundedCornerShape(28.dp))
-                    .background(
-                        Brush.linearGradient(listOf(Primary, Secondary))
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Default.AutoAwesome,
-                    contentDescription = "Impulse logo",
-                    tint = Color.White,
-                    modifier = Modifier.size(52.dp)
-                )
-            }
+        AuthField(
+            value = email,
+            onValueChange = { email = it; viewModel.resetError() },
+            label = "Email",
+            keyboardType = KeyboardType.Email,
+            imeAction = ImeAction.Next
+        )
+        Spacer(Modifier.height(14.dp))
+        AuthField(
+            value = password,
+            onValueChange = { password = it; viewModel.resetError() },
+            label = "Password",
+            keyboardType = KeyboardType.Password,
+            imeAction = ImeAction.Done,
+            password = true,
+            onDone = submit
+        )
+        Text(
+            if (registering) "Use at least 8 characters." else "Your password is never stored on this device.",
+            style = MaterialTheme.typography.bodySmall,
+            color = Hint,
+            modifier = Modifier.fillMaxWidth().padding(top = 7.dp)
+        )
+        Spacer(Modifier.height(20.dp))
 
-            Spacer(Modifier.height(28.dp))
-
-            Text(
-                text = "Impulse",
-                fontSize = 40.sp,
-                fontWeight = FontWeight.ExtraBold,
-                color = OnBackground
-            )
-
-            Spacer(Modifier.height(8.dp))
-
-            Text(
-                text = "Share links. Chat with AI.",
-                fontSize = 16.sp,
-                color = Hint,
-                textAlign = TextAlign.Center
-            )
-
-            Spacer(Modifier.height(20.dp))
-
-            // ── Feature chips ────────────────────────────────────────────────
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                FeatureChip("🔗 Share URLs")
-                FeatureChip("🤖 AI Chat")
-                FeatureChip("⚡ Instant")
-            }
-
-            Spacer(Modifier.height(56.dp))
-
-            // ── Sign-in area ─────────────────────────────────────────────────
-            AnimatedContent(
-                targetState = uiState,
-                label = "login_state"
-            ) { state ->
-                when (state) {
-                    is LoginUiState.Loading -> {
-                        CircularProgressIndicator(
-                            color = Primary,
-                            strokeWidth = 3.dp,
-                            modifier = Modifier.size(52.dp)
+        AnimatedContent(targetState = uiState, label = "auth_state") { state ->
+            when (state) {
+                LoginUiState.Loading -> CircularProgressIndicator(color = Primary)
+                is LoginUiState.Error -> Column {
+                    Surface(
+                        color = Color(0xFFFFF0EC),
+                        shape = RoundedCornerShape(12.dp),
+                        border = BorderStroke(1.dp, ErrorColor.copy(alpha = .35f))
+                    ) {
+                        Text(
+                            state.message,
+                            color = ErrorColor,
+                            style = MaterialTheme.typography.bodySmall,
+                            modifier = Modifier.fillMaxWidth().padding(14.dp)
                         )
                     }
-
-                    is LoginUiState.Error -> {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Surface(
-                                shape = RoundedCornerShape(12.dp),
-                                color = ErrorColor.copy(alpha = 0.12f),
-                                border = BorderStroke(1.dp, ErrorColor.copy(alpha = 0.4f))
-                            ) {
-                                Text(
-                                    text = state.message,
-                                    color = ErrorColor,
-                                    fontSize = 13.sp,
-                                    modifier = Modifier.padding(
-                                        horizontal = 16.dp,
-                                        vertical = 10.dp
-                                    ),
-                                    textAlign = TextAlign.Center
-                                )
-                            }
-                            Spacer(Modifier.height(16.dp))
-                            GoogleSignInButton {
-                                viewModel.setLoading()
-                                coroutineScope.launch {
-                                    viewModel.signInWithGoogle(context)
-                                }
-                            }
-                        }
-                    }
-
-                    else -> {
-                        GoogleSignInButton {
-                            viewModel.setLoading()
-                            coroutineScope.launch {
-                                viewModel.signInWithGoogle(context)
-                            }
-                        }
-                    }
+                    Spacer(Modifier.height(12.dp))
+                    AuthButton(registering, submit)
                 }
+                else -> AuthButton(registering, submit)
             }
-
-            Spacer(Modifier.height(28.dp))
-
+        }
+        TextButton(
+            onClick = {
+                registering = !registering
+                password = ""
+                viewModel.resetError()
+            }
+        ) {
             Text(
-                text = "By continuing, you agree to our Terms of Service\nand Privacy Policy.",
-                fontSize = 12.sp,
-                color = Hint,
-                textAlign = TextAlign.Center,
-                lineHeight = 18.sp
+                if (registering) "Already have an account? Sign in"
+                else "New to Impulse? Create an account",
+                color = Primary
             )
         }
+        Spacer(Modifier.height(18.dp))
+        Text(
+            "You choose what Impulse remembers. We never collect your browsing history.",
+            style = MaterialTheme.typography.bodySmall,
+            color = Hint,
+            textAlign = TextAlign.Center
+        )
     }
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
 @Composable
-private fun GlowBlob(
-    modifier: Modifier,
-    color: Color,
-    size: androidx.compose.ui.unit.Dp
+private fun AuthField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+    keyboardType: KeyboardType,
+    imeAction: ImeAction,
+    password: Boolean = false,
+    onDone: () -> Unit = {}
 ) {
-    Box(
-        modifier = modifier
-            .size(size)
-            .clip(CircleShape)
-            .background(
-                Brush.radialGradient(listOf(color, Color.Transparent))
-            )
+    OutlinedTextField(
+        value = value,
+        onValueChange = onValueChange,
+        label = { Text(label) },
+        modifier = Modifier.fillMaxWidth(),
+        singleLine = true,
+        shape = RoundedCornerShape(12.dp),
+        visualTransformation = if (password) PasswordVisualTransformation() else androidx.compose.ui.text.input.VisualTransformation.None,
+        keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction = imeAction),
+        keyboardActions = KeyboardActions(onDone = { onDone() }),
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedContainerColor = SurfaceBright,
+            unfocusedContainerColor = SurfaceBright,
+            focusedBorderColor = Primary,
+            unfocusedBorderColor = DividerColor
+        )
     )
 }
 
 @Composable
-private fun FeatureChip(label: String) {
-    Surface(
-        shape = RoundedCornerShape(20.dp),
-        color = SurfaceVariant.copy(alpha = 0.85f),
-        border = BorderStroke(1.dp, DividerColor)
+private fun AuthButton(registering: Boolean, onClick: () -> Unit) {
+    Button(
+        onClick = onClick,
+        modifier = Modifier.fillMaxWidth().height(54.dp),
+        shape = RoundedCornerShape(12.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = Primary)
     ) {
-        Text(
-            text = label,
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
-            fontSize = 12.sp,
-            color = OnSurface
-        )
+        Text(if (registering) "Create account" else "Sign in")
+        Spacer(Modifier.weight(1f))
+        Text("→", fontSize = 20.sp)
     }
 }
 
 @Composable
-private fun GoogleSignInButton(onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(58.dp),
-        shape = RoundedCornerShape(18.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFF1E1E38),
-            contentColor = OnBackground
-        ),
-        border = BorderStroke(1.dp, DividerColor),
-        elevation = ButtonDefaults.buttonElevation(defaultElevation = 0.dp)
+private fun ImpulseMark() {
+    Box(
+        modifier = Modifier.size(36.dp).clip(RoundedCornerShape(10.dp)).background(Ink),
+        contentAlignment = Alignment.Center
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            // Coloured "G" as a stand-in for the Google logo (no asset dependency)
-            Text("G", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = Color(0xFF4285F4))
-            Text("o", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = Color(0xFFEA4335))
-            Text("o", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = Color(0xFFFBBC05))
-            Text("g", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = Color(0xFF34A853))
-            Text("l", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = Color(0xFFEA4335))
-            Text("e", fontSize = 22.sp, fontWeight = FontWeight.Bold, color = Color(0xFF4285F4))
-
-            Spacer(Modifier.width(14.dp))
-
-            Text(
-                text = "Continue with Google",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = OnBackground
-            )
-        }
+        Text(
+            "I",
+            color = Color.White,
+            fontFamily = FontFamily.Serif,
+            fontStyle = FontStyle.Italic,
+            fontWeight = FontWeight.Bold,
+            fontSize = 20.sp
+        )
     }
 }

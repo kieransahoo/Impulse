@@ -22,6 +22,11 @@ class UserCollectionController(
     fun create(@Valid @RequestBody request: CreateUserCollectionRequest): UserCollectionResponse =
         service.create(request)
 
+    @PostMapping("/sources")
+    @ResponseStatus(HttpStatus.CREATED)
+    fun addSource(@Valid @RequestBody request: AddSourceToCollectionRequest): UserCollectionResponse =
+        service.addSource(request)
+
     @GetMapping
     fun findAll(@RequestParam userId: UUID): List<UserCollectionResponse> =
         service.findAll(userId)

@@ -100,7 +100,10 @@ specific `memoryIds` used.
 - Extension JavaScript syntax: **passed**.
 - Spring Boot compile and tests: **16 passed**.
 - AI Python compilation: **passed**.
-- AI pytest: **5 passed**.
+- AI pytest: **7 passed**.
+- Gemini quota exhaustion no longer rejects valid imports: ingestion falls back
+  to conservative content extraction and a deterministic 768-dimension local
+  embedding, while planning falls back to steps grounded in retrieved memories.
 
 ## Next order
 

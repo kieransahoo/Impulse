@@ -7,6 +7,8 @@ from memory_processor import (
     SourceExtractor,
     StructuredMemory,
     MemoryAction,
+    PlanRequest,
+    PlanningMemory,
 )
 
 
@@ -101,3 +103,30 @@ def test_generic_fetch_rejects_local_network_urls():
         assert False, "Expected local network URL rejection"
     except SourceExtractionError:
         pass
+
+
+def test_local_embedding_fallback_keeps_rag_vector_contract():
+    embedding = MemoryProcessor._local_embedding("focused work planning habits")
+
+    assert len(embedding) == EMBEDDING_DIMENSIONS
+    assert any(value != 0 for value in embedding)
+
+
+def test_extractive_plan_fallback_stays_grounded_in_retrieved_memory():
+    request = PlanRequest(
+        query="Plan my work session",
+        memories=[
+            PlanningMemory(
+                id="memory-1",
+                title="Focused work",
+                summary="Use distraction-free blocks.",
+                category="Productivity",
+                sourceUrl="https://example.com/focus",
+            )
+        ],
+    )
+
+    plan = MemoryProcessor._extractive_plan(request)
+
+    assert plan.goal == "Plan my work session"
+    assert plan.plan[0].memoryIds == ["memory-1"]

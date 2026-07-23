@@ -2,26 +2,31 @@ package com.impulse.ui.theme
 
 import android.app.Activity
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
-    primary          = Primary,
-    secondary        = Secondary,
-    tertiary         = PrimaryVariant,
-    background       = Background,
-    surface          = Surface,
-    surfaceVariant   = SurfaceVariant,
-    onPrimary        = OnPrimary,
-    onBackground     = OnBackground,
-    onSurface        = OnSurface,
-    onSurfaceVariant = Hint,
-    error            = ErrorColor,
-    outline          = DividerColor
+private val ImpulseColorScheme = lightColorScheme(
+    primary = Primary,
+    onPrimary = OnPrimary,
+    primaryContainer = AccentContainer,
+    onPrimaryContainer = PrimaryVariant,
+    secondary = Secondary,
+    onSecondary = Ink,
+    secondaryContainer = Secondary,
+    onSecondaryContainer = Ink,
+    background = Paper,
+    onBackground = Ink,
+    surface = Surface,
+    onSurface = Ink,
+    surfaceVariant = NeutralContainer,
+    onSurfaceVariant = Muted,
+    error = ErrorColor,
+    errorContainer = ErrorContainer,
+    outline = Outline
 )
 
 @Composable
@@ -30,18 +35,19 @@ fun ImpulseTheme(content: @Composable () -> Unit) {
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor  = Background.toArgb()
-            window.navigationBarColor = Background.toArgb()
+            window.statusBarColor = Paper.toArgb()
+            window.navigationBarColor = Surface.toArgb()
             WindowCompat.getInsetsController(window, view).apply {
-                isAppearanceLightStatusBars     = false
-                isAppearanceLightNavigationBars = false
+                isAppearanceLightStatusBars = true
+                isAppearanceLightNavigationBars = true
             }
         }
     }
 
     MaterialTheme(
-        colorScheme = DarkColorScheme,
-        typography  = Typography,
-        content     = content
+        colorScheme = ImpulseColorScheme,
+        typography = Typography,
+        shapes = ImpulseShapes,
+        content = content
     )
 }

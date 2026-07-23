@@ -20,9 +20,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BACKEND_BASE_URL", "\"https://api.yourbackend.com/\"")
-        buildConfigField("String", "OPENAI_API_KEY", "\"sk-PLACEHOLDER_OPENAI_KEY\"")
-        buildConfigField("String", "GOOGLE_WEB_CLIENT_ID", "\"PLACEHOLDER_WEB_CLIENT_ID.apps.googleusercontent.com\"")
+        buildConfigField("String", "BACKEND_BASE_URL", "\"http://192.168.16.66:8081/\"")
     }
 
     buildTypes {
@@ -55,17 +53,6 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.compose)
 
-    implementation(platform(libs.firebase.bom))
-
-    // Add the dependency for the Firebase Authentication library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation(libs.firebase.auth)
-
-    // Also add the dependencies for the Credential Manager libraries and specify their versions
-    implementation(libs.androidx.credentials)
-    implementation(libs.androidx.credentials.play.services.auth)
-    implementation(libs.googleid)
-
     // ViewModel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
@@ -78,4 +65,6 @@ dependencies {
 
     // Coil image loading
     implementation(libs.coil.compose)
+
+    testImplementation(libs.junit)
 }

@@ -51,6 +51,11 @@ Run tests:
 - Only allow-listed YouTube and Instagram hosts are fetched.
 - Source content is treated as untrusted text and capped at 50,000 characters.
 - Gemini generates structured metadata and a 768-dimension embedding.
+- If Gemini's request quota is exhausted, ingestion falls back to conservative
+  metadata/content extraction and a deterministic 768-dimension local embedding.
+  Planning remains available using steps grounded directly in retrieved memories.
+- Put your own `GEMINI_API_KEY` in the untracked `.env` file for full
+  Gemini-generated analysis; never commit API keys.
 - The Spring backend owns PostgreSQL/pgvector persistence and user isolation.
 
 ## HTTP contract

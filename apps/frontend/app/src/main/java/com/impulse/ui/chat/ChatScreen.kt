@@ -36,6 +36,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChatScreen(
+    userId: String,
     onNavigateBack: () -> Unit,
     viewModel: ChatViewModel = viewModel()
 ) {
@@ -44,6 +45,10 @@ fun ChatScreen(
     var inputText by remember { mutableStateOf("") }
     val listState  = rememberLazyListState()
     val scope      = rememberCoroutineScope()
+
+    LaunchedEffect(userId) {
+        viewModel.setUserId(userId)
+    }
 
     // Auto-scroll to bottom on new message
     LaunchedEffect(messages.size, isTyping) {
@@ -139,7 +144,7 @@ private fun ChatTopBar(onBack: () -> Unit, onClearChat: () -> Unit) {
                 }
                 Spacer(Modifier.width(10.dp))
                 Column {
-                    Text("AI Assistant", fontSize = 16.sp, fontWeight = FontWeight.SemiBold, color = OnBackground)
+                    Text("Use your memories", fontSize = 16.sp, fontWeight = FontWeight.SemiBold, color = OnBackground)
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Box(
                             modifier = Modifier
@@ -148,7 +153,7 @@ private fun ChatTopBar(onBack: () -> Unit, onClearChat: () -> Unit) {
                                 .background(SuccessColor)
                         )
                         Spacer(Modifier.width(4.dp))
-                        Text("GPT-3.5 Turbo · Online", fontSize = 12.sp, color = SuccessColor)
+                        Text("Ready to retrieve", fontSize = 12.sp, color = SuccessColor)
                     }
                 }
             }
@@ -209,6 +214,24 @@ private fun MessageBubble(message: UiMessage) {
                 fontSize   = 15.sp,
                 lineHeight = 22.sp
             )
+            if (!message.isUser && message.sources.isNotEmpty()) {
+                Column(Modifier.padding(top = 10.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    message.sources.take(4).forEach { source ->
+                        Surface(
+                            color = NeutralContainer,
+                            shape = RoundedCornerShape(8.dp)
+                        ) {
+                            Text(
+                                "${source.platform.replace("_", " ")} · ${source.title}",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = Ink,
+                                modifier = Modifier.padding(horizontal = 9.dp, vertical = 7.dp),
+                                maxLines = 2
+                            )
+                        }
+                    }
+                }
+            }
         }
 
         if (message.isUser) {
@@ -325,7 +348,7 @@ private fun ChatInputBar(
                 value           = text,
                 onValueChange   = onTextChange,
                 placeholder     = {
-                    Text("Message AI Assistant…", color = Hint, fontSize = 14.sp)
+                    Text("What do you want to plan or decide?", color = Hint, fontSize = 14.sp)
                 },
                 modifier        = Modifier.weight(1f),
                 shape           = RoundedCornerShape(24.dp),
@@ -387,10 +410,10 @@ private fun ChatWelcomeState(
     onSuggest: (String) -> Unit
 ) {
     val suggestions = listOf(
-        "✨  Summarise a YouTube video for me",
-        "📝  Help me write an email",
-        "🔍  Explain quantum computing simply",
-        "💡  Give me startup ideas for 2026"
+        "Plan a trip from my saved travel ideas",
+        "Compare products I have saved",
+        "Create a meal plan from my recipes",
+        "Build a focused learning plan"
     )
 
     Column(
@@ -418,7 +441,7 @@ private fun ChatWelcomeState(
         Spacer(Modifier.height(24.dp))
 
         Text(
-            text       = "How can I help you today?",
+            text       = "What do you want to do?",
             fontSize   = 22.sp,
             fontWeight = FontWeight.Bold,
             color      = OnBackground,
@@ -428,7 +451,7 @@ private fun ChatWelcomeState(
         Spacer(Modifier.height(6.dp))
 
         Text(
-            text      = "Ask me anything",
+            text      = "Impulse will use your saved knowledge when it is relevant.",
             fontSize  = 14.sp,
             color     = Hint,
             textAlign = TextAlign.Center
@@ -439,7 +462,7 @@ private fun ChatWelcomeState(
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             suggestions.forEach { suggestion ->
                 OutlinedButton(
-                    onClick  = { onSuggest(suggestion.drop(3)) },   // strip emoji prefix
+                    onClick  = { onSuggest(suggestion) },
                     modifier = Modifier.fillMaxWidth(),
                     shape    = RoundedCornerShape(14.dp),
                     border   = BorderStroke(1.dp, DividerColor),

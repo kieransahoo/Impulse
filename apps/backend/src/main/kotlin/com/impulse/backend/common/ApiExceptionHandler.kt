@@ -11,6 +11,8 @@ import com.impulse.backend.memory.DuplicateMemoryException
 import com.impulse.backend.memory.UnsupportedMemoryUrlException
 import com.impulse.backend.planning.NoMemoriesForPlanningException
 import com.impulse.backend.usercollection.UserCollectionNotFoundException
+import com.impulse.backend.auth.EmailAlreadyRegisteredException
+import com.impulse.backend.auth.InvalidCredentialsException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
@@ -27,6 +29,18 @@ data class ApiError(
 
 @RestControllerAdvice
 class ApiExceptionHandler {
+    @ExceptionHandler(EmailAlreadyRegisteredException::class)
+    fun handleEmailConflict(exception: EmailAlreadyRegisteredException): ResponseEntity<ApiError> =
+        ResponseEntity.status(HttpStatus.CONFLICT).body(
+            ApiError(HttpStatus.CONFLICT.value(), exception.message ?: "Email is already registered"),
+        )
+
+    @ExceptionHandler(InvalidCredentialsException::class)
+    fun handleInvalidCredentials(exception: InvalidCredentialsException): ResponseEntity<ApiError> =
+        ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
+            ApiError(HttpStatus.UNAUTHORIZED.value(), exception.message ?: "Invalid credentials"),
+        )
+
     @ExceptionHandler(UserCollectionNotFoundException::class)
     fun handleUserCollectionNotFound(exception: UserCollectionNotFoundException): ResponseEntity<ApiError> =
         ResponseEntity.status(HttpStatus.NOT_FOUND).body(

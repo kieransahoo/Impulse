@@ -36,6 +36,23 @@ data class SharedSourceRequest(
     val content: String? = null,
 )
 
+data class AddSourceToCollectionRequest(
+    @field:NotNull
+    val userId: UUID,
+
+    val collectionId: UUID? = null,
+
+    @field:NotBlank
+    @field:Size(max = 2_000)
+    val url: String,
+
+    @field:Size(max = 2_000)
+    val userNote: String? = null,
+
+    @field:Size(max = 50_000)
+    val content: String? = null,
+)
+
 data class UserCollectionResponse(
     val id: UUID,
     val userId: UUID,

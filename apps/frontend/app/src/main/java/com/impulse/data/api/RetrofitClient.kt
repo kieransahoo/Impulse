@@ -10,9 +10,8 @@ import java.util.concurrent.TimeUnit
 /**
  * Singleton Retrofit clients.
  *
- * Two clients exist:
- *  1. [apiService]    → YOUR backend (BuildConfig.BACKEND_BASE_URL)
- *  2. [openAiService] → OpenAI API (https://api.openai.com/)
+ * The Android app calls only the Spring backend. AI provider credentials and
+ * calls remain behind that trusted server boundary.
  */
 object RetrofitClient {
 
@@ -36,14 +35,5 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)
-    }
-
-    val openAiService: OpenAiService by lazy {
-        Retrofit.Builder()
-            .baseUrl("https://api.openai.com/")
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(OpenAiService::class.java)
     }
 }

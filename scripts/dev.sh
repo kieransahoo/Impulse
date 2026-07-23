@@ -37,13 +37,12 @@ if [[ ! -x "${GRADLEW}" ]]; then
   exit 1
 fi
 
-if [[ ! -f "${AI_DIR}/.env" ]]; then
-  echo "Missing apps/ai-service/.env. Copy .env.example and set GEMINI_API_KEY." >&2
-  exit 1
-fi
-
-if ! grep -Eq '^GEMINI_API_KEY=.+$' "${AI_DIR}/.env"; then
-  echo "GEMINI_API_KEY is missing from apps/ai-service/.env." >&2
+if [[ -z "${GEMINI_API_KEY:-}" ]] && (
+  [[ ! -f "${AI_DIR}/.env" ]] ||
+  ! grep -Eq '^GEMINI_API_KEY=.+$' "${AI_DIR}/.env" ||
+  grep -Eq '^GEMINI_API_KEY=(your-key|your_new_key|replace_me|change_me)$' "${AI_DIR}/.env"
+); then
+  echo "Gemini key is missing. Run make setup, or export GEMINI_API_KEY." >&2
   exit 1
 fi
 
@@ -83,7 +82,7 @@ READY_RESPONSE="$(curl --silent --show-error http://localhost:8001/ready || true
 if ! curl --silent --fail http://localhost:8001/ready >/dev/null; then
   echo "AI service is running, but Gemini is not ready." >&2
   echo "${READY_RESPONSE}" >&2
-  echo "Update GEMINI_API_KEY in apps/ai-service/.env, then run make dev again." >&2
+  echo "Update the private .env key or exported GEMINI_API_KEY, then run make dev again." >&2
   exit 1
 fi
 

@@ -1,49 +1,68 @@
 # CreatorBrain + Impulse
 
-## Run everything
+## Fresh clone to running MVP
 
-Requirements: Docker, Java 21, and the repository Python environment.
-
-Set the Gemini key once:
+Requirements: Docker, Java 21, Python 3, and Make.
 
 ```bash
-cp apps/ai-service/.env.example apps/ai-service/.env
-```
-
-Edit `apps/ai-service/.env`, then from the repository root run:
-
-```bash
+git clone https://github.com/kieransahoo/Impulse.git
+cd Impulse
+make setup
 make dev
 ```
 
-This single command starts:
+`make setup` creates `.venv`, installs the AI dependencies, and asks for a
+Gemini API key with hidden input. The key is stored only in
+`apps/ai-service/.env`, which Git ignores.
+
+Open the test console at [http://localhost:8081/](http://localhost:8081/).
+
+## API key options
+
+Each developer can run `make setup` and use their own Gemini key.
+
+For your own machine, keep your key in:
+
+```text
+apps/ai-service/.env
+```
+
+For CI, containers, or hosted environments, inject the key without a file:
+
+```bash
+export GEMINI_API_KEY="..."
+make dev
+```
+
+Never put a real key in `.env.example`, source code, documentation, commits, or
+shell scripts. `.env.example` contains safe placeholders only.
+
+## Services
+
+`make dev` starts:
 
 - PostgreSQL + pgvector on `localhost:5433`
 - FastAPI/Gemini AI service on `localhost:8001`
-- Kotlin Spring Boot backend on `localhost:8081`
+- Kotlin Spring Boot backend and webpage on `localhost:8081`
 
-Open the local MVP console:
-
-- `http://localhost:8081/`
-
-The page creates a stable test-user UUID, processes multi-URL collections,
-inspects retrieved memories, and creates grounded personalized plans.
-
-Health URLs:
+Health checks:
 
 - `http://localhost:8001/health`
-- `http://localhost:8001/ready` (validates the configured Gemini key)
+- `http://localhost:8001/ready`
 - `http://localhost:8081/actuator/health`
 
-Press Ctrl+C to stop the AI and backend processes. PostgreSQL remains available
-for the next run; stop it with:
+Press Ctrl+C to stop the AI and backend. PostgreSQL data remains available.
 
 ```bash
 make down
 ```
 
-Run all automated checks with:
+## Verification
 
 ```bash
 make test
+make secrets-check
 ```
+
+The test workflow also fails if a likely API key or tracked private `.env` is
+detected.

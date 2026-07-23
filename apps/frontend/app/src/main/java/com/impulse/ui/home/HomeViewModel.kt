@@ -1,46 +1,97 @@
 package com.impulse.ui.home
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.impulse.data.model.MemoryResponse
+import com.impulse.data.model.UserCollectionResponse
+import com.impulse.data.repository.ImpulseRepository
+import java.util.UUID
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import java.util.UUID
+import kotlinx.coroutines.launch
 
-/** A URL that was previously shared through the app. */
 data class SharedUrlItem(
     val id: String = UUID.randomUUID().toString(),
     val url: String,
     val title: String,
+    val summary: String = "",
+    val platform: String = "WEB",
+    val thumbnailUrl: String? = null,
     val timestamp: Long = System.currentTimeMillis()
 )
 
+data class HomeUiState(
+    val loading: Boolean = false,
+    val creating: Boolean = false,
+    val collections: List<UserCollectionResponse> = emptyList(),
+    val memories: List<SharedUrlItem> = emptyList(),
+    val message: String? = null,
+    val error: String? = null
+)
+
 class HomeViewModel : ViewModel() {
+    private val repository = ImpulseRepository()
+    private val _uiState = MutableStateFlow(HomeUiState())
+    val uiState: StateFlow<HomeUiState> = _uiState.asStateFlow()
+    val sharedUrls: StateFlow<List<SharedUrlItem>> = MutableStateFlow(emptyList())
 
-    private val _sharedUrls = MutableStateFlow<List<SharedUrlItem>>(emptyList())
-    val sharedUrls: StateFlow<List<SharedUrlItem>> = _sharedUrls.asStateFlow()
-
-    /**
-     * In a real app these would be fetched from the backend.
-     * For the MVP we pre-populate with representative mock data.
-     */
     fun loadRecentUrls(userId: String) {
-        _sharedUrls.value = listOf(
-            SharedUrlItem(
-                url   = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-                title = "YouTube – Never Gonna Give You Up"
-            ),
-            SharedUrlItem(
-                url   = "https://www.instagram.com/p/C9xYZ_EXAMPLE/",
-                title = "Instagram Post"
-            ),
-            SharedUrlItem(
-                url   = "https://youtu.be/jNQXAC9IVRw",
-                title = "YouTube Short"
-            ),
-            SharedUrlItem(
-                url   = "https://www.instagram.com/reel/EXAMPLE_REEL/",
-                title = "Instagram Reel"
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(loading = true, error = null)
+            repository.loadWorkspace(userId).fold(
+                onSuccess = { (collections, memories) ->
+                    _uiState.value = HomeUiState(
+                        collections = collections,
+                        memories = memories.map(MemoryResponse::toUiItem)
+                    )
+                },
+                onFailure = {
+                    _uiState.value = _uiState.value.copy(
+                        loading = false,
+                        error = it.localizedMessage ?: "Could not load your memory space."
+                    )
+                }
             )
-        )
+        }
+    }
+
+    fun createCollection(
+        userId: String,
+        name: String,
+        description: String?,
+        urls: List<String>
+    ) {
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(creating = true, error = null, message = null)
+            repository.createCollection(userId, name, description, urls).fold(
+                onSuccess = {
+                    _uiState.value = _uiState.value.copy(
+                        creating = false,
+                        message = "${it.processedSources} memories created; ${it.failedSources} need attention."
+                    )
+                    loadRecentUrls(userId)
+                },
+                onFailure = {
+                    _uiState.value = _uiState.value.copy(
+                        creating = false,
+                        error = it.localizedMessage ?: "Could not create this collection."
+                    )
+                }
+            )
+        }
+    }
+
+    fun clearFeedback() {
+        _uiState.value = _uiState.value.copy(message = null, error = null)
     }
 }
+
+private fun MemoryResponse.toUiItem() = SharedUrlItem(
+    id = id,
+    url = sourceUrl,
+    title = title,
+    summary = summary,
+    platform = platform ?: category,
+    thumbnailUrl = thumbnailUrl
+)

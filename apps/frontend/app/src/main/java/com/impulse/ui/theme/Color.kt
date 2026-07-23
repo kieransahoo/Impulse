@@ -2,34 +2,41 @@ package com.impulse.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// ── Background layers ──────────────────────────────────────────────────────────
-val Background     = Color(0xFF0D0D1A)   // deepest navy
-val Surface        = Color(0xFF1A1A2E)   // dark purple-navy card surface
-val SurfaceVariant = Color(0xFF252540)   // slightly lighter surface
+// Impulse editorial light palette — docs/12-product-design-system.md
+val Ink = Color(0xFF171714)
+val Muted = Color(0xFF69685F)
+val Paper = Color(0xFFF5F3EC)
+val Surface = Color(0xFFFFFDF7)
+val SurfaceBright = Color(0xFFFFFEFB)
+val Outline = Color(0xFFDCD8CA)
+val Primary = Color(0xFFE85D35)
+val PrimaryVariant = Color(0xFFBC3F20)
+val Secondary = Color(0xFFD6EE72)
+val SuccessColor = Color(0xFF26734D)
+val ErrorColor = Color(0xFFA33D32)
+val WarningColor = Color(0xFFD79C35)
+val DarkSurface = Color(0xFF20201D)
+val DarkSurfaceRaised = Color(0xFF292925)
+val DarkInput = Color(0xFF2D2D29)
+val DarkOutline = Color(0xFF44443E)
+val OnDarkMuted = Color(0xFFAAA99F)
+val NeutralContainer = Color(0xFFEFECDF)
+val AccentContainer = Color(0xFFF4DACF)
+val SuccessContainer = Color(0xFFE6F3E9)
+val ErrorContainer = Color(0xFFFAE7E3)
 
-// ── Brand colors ───────────────────────────────────────────────────────────────
-val Primary        = Color(0xFF6C63FF)   // electric indigo
-val PrimaryVariant = Color(0xFF8B83FF)   // lighter indigo for gradients
-val Secondary      = Color(0xFFA78BFA)   // soft violet accent
-
-// ── Text / content ─────────────────────────────────────────────────────────────
-val OnBackground   = Color(0xFFE8E8F0)   // near-white text on dark backgrounds
-val OnSurface      = Color(0xFFD0D0E8)   // slightly dimmer text on cards
-val OnPrimary      = Color(0xFFFFFFFF)   // text on primary-colored surfaces
-val Hint           = Color(0xFF666688)   // placeholder / secondary text
-
-// ── Structural ──────────────────────────────────────────────────────────────────
-val DividerColor   = Color(0xFF2A2A45)   // subtle card borders
-val ErrorColor     = Color(0xFFFF6B6B)   // error states
-val SuccessColor   = Color(0xFF4ADE80)   // success / online indicator
-
-// ── Chat bubbles ───────────────────────────────────────────────────────────────
-val UserBubble     = Color(0xFF6C63FF)   // user message background
-val AiBubble       = Color(0xFF1E1E3A)   // AI message background
-val AiBubbleBorder = Color(0xFF2A2A50)   // AI bubble subtle border
-val UserText       = Color(0xFFFFFFFF)
-val AiText         = Color(0xFFE8E8F0)
-
-// ── Input bar ──────────────────────────────────────────────────────────────────
-val InputBackground = Color(0xFF1E1E38)
-val InputBorder     = Color(0xFF3A3A60)
+// Compatibility aliases used by existing screens.
+val Background = Paper
+val SurfaceVariant = NeutralContainer
+val OnBackground = Ink
+val OnSurface = Ink
+val OnPrimary = Color.White
+val Hint = Muted
+val DividerColor = Outline
+val UserBubble = Primary
+val AiBubble = SurfaceBright
+val AiBubbleBorder = Outline
+val UserText = Color.White
+val AiText = Ink
+val InputBackground = SurfaceBright
+val InputBorder = Outline

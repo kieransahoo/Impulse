@@ -1,4 +1,5 @@
 import json
+import hashlib
 import ipaddress
 import math
 import os
@@ -478,14 +479,23 @@ class MemoryProcessor:
         source = self.extractor.extract(request)
         try:
             memory = self.gateway.analyze(request, source)
-            document = self._document(request, source, memory)
-            embedding = self.gateway.embed(document)
         except ClientError as exception:
             if "API_KEY_INVALID" in str(exception) or "API key not valid" in str(exception):
                 raise AiConfigurationError(
                     "Gemini rejected GEMINI_API_KEY. Update apps/ai-service/.env with a valid key."
                 ) from exception
-            raise
+            if self._is_quota_error(exception):
+                memory = self._extractive_memory(request, source)
+            else:
+                raise
+        document = self._document(request, source, memory)
+        try:
+            embedding = self.gateway.embed(document)
+        except ClientError as exception:
+            if self._is_quota_error(exception):
+                embedding = self._local_embedding(document)
+            else:
+                raise
         return MemoryProcessResponse(
             title=memory.title.strip() or source.title,
             description=memory.description or source.description,
@@ -502,10 +512,97 @@ class MemoryProcessor:
         return EmbedQueryResponse(embedding=self.gateway.embed(request.query))
 
     def create_plan(self, request: PlanRequest):
-        return self.gateway.plan(request)
+        try:
+            return self.gateway.plan(request)
+        except ClientError as exception:
+            if self._is_quota_error(exception):
+                return self._extractive_plan(request)
+            raise
 
     def verify(self):
         self.gateway.verify()
+
+    @staticmethod
+    def _is_quota_error(exception):
+        message = str(exception)
+        return "RESOURCE_EXHAUSTED" in message or "Quota exceeded" in message
+
+    @staticmethod
+    def _extractive_memory(request, source):
+        words = [
+            word.strip(".,:;!?()[]{}\"'").lower()
+            for word in source.content.split()
+        ]
+        stopwords = {
+            "about", "after", "before", "from", "have", "into", "that", "their",
+            "there", "these", "this", "with", "your", "http", "https", "title",
+            "description", "visible", "content",
+        }
+        tags = []
+        for word in words:
+            if len(word) >= 4 and word not in stopwords and word not in tags:
+                tags.append(word[:100])
+            if len(tags) == 10:
+                break
+        text = " ".join(source.content.split())
+        summary = text[:700] or source.description or source.title
+        return StructuredMemory(
+            title=source.title,
+            description=source.description,
+            summary=summary,
+            category=request.platform.replace("_", " ").title(),
+            tags=tags,
+            topics=tags[:5],
+            actions=[],
+        )
+
+    @staticmethod
+    def _local_embedding(document):
+        vector = [0.0] * EMBEDDING_DIMENSIONS
+        tokens = {
+            token.strip(".,:;!?()[]{}\"'").lower()
+            for token in document.split()
+            if len(token) >= 3
+        }
+        for token in tokens:
+            digest = hashlib.sha256(token.encode("utf-8")).digest()
+            index = int.from_bytes(digest[:4], "big") % EMBEDDING_DIMENSIONS
+            vector[index] += 1.0 if digest[4] % 2 == 0 else -1.0
+        norm = math.sqrt(sum(value * value for value in vector)) or 1.0
+        return [value / norm for value in vector]
+
+    @staticmethod
+    def _extractive_plan(request):
+        steps = []
+        for memory in request.memories:
+            if memory.actions:
+                for action in memory.actions:
+                    steps.append(
+                        PlanStep(
+                            step=action.action,
+                            durationMinutes=action.durationMinutes,
+                            reason=f"Retrieved from {memory.title}.",
+                            memoryIds=[memory.id],
+                        )
+                    )
+            else:
+                steps.append(
+                    PlanStep(
+                        step=f"Apply the useful ideas from: {memory.title}",
+                        reason=memory.summary,
+                        memoryIds=[memory.id],
+                    )
+                )
+            if len(steps) >= 6:
+                break
+        return PlanResponse(
+            goal=request.query,
+            explanation=(
+                "This grounded plan was assembled directly from retrieved memories "
+                "because the Gemini generation quota is temporarily unavailable."
+            ),
+            plan=steps,
+        )
 
     @staticmethod
     def _document(request, source, memory):
