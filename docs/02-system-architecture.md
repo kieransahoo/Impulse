@@ -14,6 +14,9 @@
 Chrome Extension → Spring Boot API → Content Processor → Gemini → PostgreSQL + pgvector → React Dashboard
 ```
 
+The extension architecture, request routing, privacy boundary, and future
+planning surface are documented in `docs/10-browser-extension.md`.
+
 ## AI Responsibilities
 
 ### Memory AI

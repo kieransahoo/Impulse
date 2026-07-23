@@ -29,3 +29,9 @@
 - Store embeddings in a `pgvector` column for efficient ANN search.
 - Periodically recompute embeddings when the underlying model improves.
 - Cache recent query results per user session to reduce latency.
+
+## Implemented MVP retrieval
+
+`POST /api/impulse/plan` embeds the query and ranks only the requesting user's
+memories using semantic similarity, keyword/topic/action matches, recency, and
+action availability. The top eight are sent to Gemini for structured planning.

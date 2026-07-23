@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Test shared URLs, personalized memory retrieval, and grounded planning in Impulse.">
+  <title>Impulse Memory Lab</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span class="brand-mark">I</span>
+      <span>Impulse</span>
+    </a>
+    <div class="service-state" id="service-state">
+      <span class="state-dot"></span>
+      <span>Checking services</span>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <p class="eyebrow">Personal memory engine · MVP console</p>
+      <h1>Turn saved links into<br><span>useful personal context.</span></h1>
+      <p class="hero-copy">Create a collection from YouTube, Instagram, or any public webpage. Impulse understands each source, stores its memory, and retrieves the right ideas when you plan.</p>
+    </section>
+
+    <section class="identity panel">
+      <div>
+        <p class="section-kicker">Test identity</p>
+        <h2>Your memory space</h2>
+        <p>This UUID stands in for the future authenticated app user.</p>
+      </div>
+      <div class="identity-control">
+        <label for="user-id">User ID</label>
+        <div class="input-action">
+          <input id="user-id" type="text" autocomplete="off" spellcheck="false">
+          <button id="new-user" class="button ghost" type="button">New user</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <section class="panel compose-panel">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">01 · Capture</p>
+            <h2>Create a collection</h2>
+          </div>
+          <span class="step-badge">Up to 20 links</span>
+        </div>
+
+        <form id="collection-form">
+          <label for="collection-name">Collection name</label>
+          <input id="collection-name" type="text" maxlength="200" placeholder="Ideas for my focused work routine" required>
+
+          <label for="collection-description">What is this collection for?</label>
+          <input id="collection-description" type="text" maxlength="2000" placeholder="Optional context for your future self">
+
+          <label for="source-urls">Shared URLs</label>
+          <textarea id="source-urls" rows="8" placeholder="Paste one URL per line&#10;https://www.youtube.com/watch?v=...&#10;https://www.instagram.com/reel/...&#10;https://example.com/article" required></textarea>
+          <p class="field-help">Public HTML pages work now. Private posts may require visible content from the future app share extension.</p>
+
+          <button class="button primary full" type="submit">
+            <span>Create memories</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </form>
+        <div id="capture-result" class="result-region" aria-live="polite"></div>
+      </section>
+
+      <section class="panel memory-panel">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">02 · Inspect</p>
+            <h2>Collections</h2>
+          </div>
+          <button id="refresh-collections" class="button ghost compact" type="button">Refresh</button>
+        </div>
+        <div id="collections" class="stack empty-state">
+          <p>No collections yet. Add your first links to begin.</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel intelligence-panel">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">03 · Retrieve and reason</p>
+          <h2>Use what you saved</h2>
+        </div>
+      </div>
+      <div class="intelligence-grid">
+        <form id="search-form" class="tool-card">
+          <span class="tool-number">A</span>
+          <h3>Search memory</h3>
+          <p>Inspect the ranked memories before asking the planner.</p>
+          <label for="search-query">What are you looking for?</label>
+          <textarea id="search-query" rows="3" placeholder="Ideas for a focused coding session" required></textarea>
+          <button class="button secondary full" type="submit">Retrieve memories</button>
+          <div id="search-result" class="result-region" aria-live="polite"></div>
+        </form>
+
+        <form id="plan-form" class="tool-card featured">
+          <span class="tool-number">B</span>
+          <h3>Create a grounded plan</h3>
+          <p>Gemini plans from the memories retrieved for this user.</p>
+          <label for="plan-query">What do you want to do?</label>
+          <textarea id="plan-query" rows="3" placeholder="Plan a productive three-hour evening" required></textarea>
+          <button class="button primary full" type="submit">Create personalized plan</button>
+          <div id="plan-result" class="result-region" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

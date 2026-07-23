@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: impulse-backend
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/impulse}
+    username: ${DB_USERNAME:impulse}
+    password: ${DB_PASSWORD:impulse}
+  sql:
+    init:
+      mode: always
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: ${PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+impulse:
+  youtube:
+    api-key: ${YOUTUBE_API_KEY:}
+    base-url: ${YOUTUBE_API_BASE_URL:https://www.googleapis.com/youtube/v3}
+    max-items: ${YOUTUBE_MAX_ITEMS:200}
+  ai:
+    base-url: ${AI_SERVICE_URL:http://localhost:8001}
+    memory-path: ${AI_MEMORY_PATH:/api/v1/memories/process}
