@@ -336,7 +336,7 @@ private fun ChatInputBar(
     Surface(
         color           = Surface,
         shadowElevation = 8.dp,
-        modifier        = Modifier.navigationBarsPadding()
+        modifier        = Modifier.navigationBarsPadding().imePadding()
     ) {
         Row(
             modifier          = Modifier

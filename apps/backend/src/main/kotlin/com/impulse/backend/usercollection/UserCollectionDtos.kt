@@ -53,6 +53,18 @@ data class AddSourceToCollectionRequest(
     val content: String? = null,
 )
 
+data class UpdateUserCollectionRequest(
+    @field:NotNull
+    val userId: UUID,
+
+    @field:NotBlank
+    @field:Size(max = 200)
+    val name: String,
+
+    @field:Size(max = 2_000)
+    val description: String? = null,
+)
+
 data class UserCollectionResponse(
     val id: UUID,
     val userId: UUID,

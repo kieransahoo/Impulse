@@ -1,7 +1,7 @@
 from config import COLLECTION
 from embeddings import create_embedding
 
-SIMILARITY_THRESHOLD = 0.50
+SIMILARITY_THRESHOLD = 0.75
 
 
 def retrieve(query, where=None):

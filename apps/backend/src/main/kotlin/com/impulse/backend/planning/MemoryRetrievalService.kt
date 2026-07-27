@@ -23,7 +23,12 @@ class MemoryRetrievalService(
     private val aiClient: AiPlanningClient,
 ) {
     @Transactional(readOnly = true)
-    fun retrieve(userId: UUID, query: String, limit: Int = DEFAULT_LIMIT): List<RetrievedMemory> {
+    fun retrieve(
+        userId: UUID,
+        query: String,
+        limit: Int = DEFAULT_LIMIT,
+        allowedMemoryIds: Set<UUID>? = null,
+    ): List<RetrievedMemory> {
         val queryEmbedding = aiClient.embedQuery(query)
         val queryTerms = query.lowercase()
             .split(Regex("[^\\p{L}\\p{N}]+"))
@@ -32,10 +37,45 @@ class MemoryRetrievalService(
 
         return memoryRepository.findAllByUserIdOrderByCreatedAtDesc(userId)
             .asSequence()
+            .filter { allowedMemoryIds == null || it.id in allowedMemoryIds }
             .map { score(it, queryEmbedding, queryTerms) }
             .sortedByDescending(RetrievedMemory::score)
             .take(limit.coerceIn(1, MAX_LIMIT))
             .toList()
+    }
+
+    @Transactional(readOnly = true)
+    fun retrieveRelevant(
+        userId: UUID,
+        query: String,
+        limit: Int = PLANNING_LIMIT,
+        intent: PlanIntent? = null,
+        allowedMemoryIds: Set<UUID>? = null,
+    ): List<RetrievedMemory> =
+        retrieve(userId, query, MAX_LIMIT, allowedMemoryIds)
+            .asSequence()
+            .filter {
+                it.score >= MIN_RELEVANCE_SCORE &&
+                    (it.semanticScore >= MIN_SEMANTIC_SCORE || it.keywordScore > 0.0) &&
+                    isIntentCompatible(it, intent)
+            }
+            .distinctBy { it.memory.sourceUrl }
+            .take(limit.coerceIn(1, PLANNING_LIMIT))
+            .toList()
+
+    private fun isIntentCompatible(result: RetrievedMemory, intent: PlanIntent?): Boolean {
+        if (intent == null) return true
+        if (intent == PlanIntent.GENERAL) {
+            return result.keywordScore > 0.0 || result.semanticScore >= GENERAL_SEMANTIC_SCORE
+        }
+        val searchable = buildString {
+            append(result.memory.title).append(' ')
+            append(result.memory.summary).append(' ')
+            append(result.memory.category).append(' ')
+            append(result.memory.tags.joinToString(" ")).append(' ')
+            append(result.memory.topics.joinToString(" "))
+        }.lowercase()
+        return INTENT_RELEVANCE_TERMS.getValue(intent).any(searchable::contains)
     }
 
     private fun score(
@@ -79,5 +119,21 @@ class MemoryRetrievalService(
     private companion object {
         const val DEFAULT_LIMIT = 8
         const val MAX_LIMIT = 20
+        const val PLANNING_LIMIT = 6
+        const val MIN_RELEVANCE_SCORE = 0.30
+        const val MIN_SEMANTIC_SCORE = 0.25
+        const val GENERAL_SEMANTIC_SCORE = 0.60
+        val INTENT_RELEVANCE_TERMS = mapOf(
+            PlanIntent.STUDY to listOf("study", "exam", "revision", "syllabus", "course", "education", "lecture"),
+            PlanIntent.WORKOUT to listOf("workout", "exercise", "gym", "fitness", "training", "strength", "mobility"),
+            PlanIntent.MEAL to listOf("meal", "diet", "recipe", "food", "grocery", "nutrition", "cook"),
+            PlanIntent.ROOM to listOf("room", "interior", "decor", "furniture", "aesthetic", "lighting"),
+            PlanIntent.PRODUCT to listOf("product", "review", "buy", "purchase", "shopping", "specification"),
+            PlanIntent.OUTING to listOf("cafe", "coffee", "restaurant", "outing", "date", "place", "itinerary", "travel"),
+            PlanIntent.LEARNING to listOf("learn", "skill", "tutorial", "practice", "lesson"),
+            PlanIntent.PROJECT to listOf("project", "build", "create", "launch", "develop"),
+            PlanIntent.ROUTINE to listOf("routine", "habit", "daily", "weekly", "schedule"),
+            PlanIntent.GENERAL to emptyList(),
+        )
     }
 }

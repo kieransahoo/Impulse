@@ -92,6 +92,12 @@ data class AddSourceToCollectionRequest(
     val userNote: String? = null
 )
 
+data class UpdateCollectionRequest(
+    val userId: String,
+    val name: String,
+    val description: String? = null
+)
+
 data class CollectionSourceResponse(
     val id: String,
     val url: String,
@@ -133,14 +139,16 @@ data class SearchMemoriesRequest(
 data class CreatePlanRequest(
     val userId: String,
     val query: String,
-    val constraints: Map<String, Any?> = emptyMap()
+    val constraints: Map<String, Any?> = emptyMap(),
+    val allowGeneralKnowledge: Boolean = false
 )
 
 data class PlanStepResponse(
     val step: String,
     val durationMinutes: Int?,
     val reason: String?,
-    val memoryIds: List<String>
+    val memoryIds: List<String>,
+    val sourceType: String = "MEMORY"
 )
 
 data class GroundingMemoryResponse(
@@ -153,9 +161,61 @@ data class GroundingMemoryResponse(
 )
 
 data class PlanResponse(
+    val intent: String = "GENERAL",
+    val groundingStatus: String = "NO_GROUNDING",
     val goal: String,
     val explanation: String,
     val plan: List<PlanStepResponse>,
     val retrievedMemoryIds: List<String>,
-    val groundingMemories: List<GroundingMemoryResponse>
+    val groundingMemories: List<GroundingMemoryResponse>,
+    val missingContext: List<String> = emptyList(),
+    val suggestedSources: List<String> = emptyList()
+)
+
+data class SavePlanStepRequest(
+    val step: String,
+    val durationMinutes: Int?,
+    val reason: String?,
+    val memoryIds: List<String>
+)
+
+data class SavePlanRequest(
+    val userId: String,
+    val goal: String,
+    val explanation: String,
+    val plan: List<SavePlanStepRequest>,
+    val retrievedMemoryIds: List<String>
+)
+
+data class SavedPlanStepResponse(
+    val id: String,
+    val order: Int,
+    val step: String,
+    val durationMinutes: Int?,
+    val reason: String?,
+    val memoryIds: List<String>,
+    val completed: Boolean = false,
+    val completedAt: String? = null
+)
+
+data class SavedPlanResponse(
+    val id: String,
+    val userId: String,
+    val goal: String,
+    val explanation: String,
+    val plan: List<SavedPlanStepResponse>,
+    val retrievedMemoryIds: List<String>,
+    val createdAt: String,
+    val status: String = "SAVED",
+    val activatedAt: String? = null,
+    val completedAt: String? = null
+)
+
+data class UpdateStepCompletionRequest(val completed: Boolean)
+
+data class RegeneratePlanRequest(
+    val userId: String,
+    val constraints: Map<String, Any?> = emptyMap(),
+    val allowGeneralKnowledge: Boolean = false,
+    val query: String? = null
 )

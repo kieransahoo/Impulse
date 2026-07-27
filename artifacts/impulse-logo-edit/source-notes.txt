@@ -1,0 +1,5 @@
+Brand icon source:
+- apps/frontend/app/src/main/res/drawable/ic_launcher_background.xml
+- apps/frontend/app/src/main/res/drawable/ic_launcher_foreground.xml
+
+The SVG uses the exact official colors and foreground path from those project resources.

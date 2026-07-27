@@ -1,0 +1,53 @@
+{
+  "outputSlides": [
+    {
+      "outputSlide": 1,
+      "sourceSlide": 1,
+      "narrativeRole": "title",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite-and-reposition",
+          "sourceElementId": "sh/3qxwn2x8",
+          "reason": "Make room for the official Impulse icon in the existing brand rail."
+        }
+      ]
+    },
+    {
+      "outputSlide": 2,
+      "sourceSlide": 2,
+      "narrativeRole": "problem and solution",
+      "reuseMode": "duplicate-slide",
+      "editTargets": []
+    },
+    {
+      "outputSlide": 3,
+      "sourceSlide": 3,
+      "narrativeRole": "architecture",
+      "reuseMode": "duplicate-slide",
+      "editTargets": []
+    },
+    {
+      "outputSlide": 4,
+      "sourceSlide": 4,
+      "narrativeRole": "LLM and RAG",
+      "reuseMode": "duplicate-slide",
+      "editTargets": []
+    },
+    {
+      "outputSlide": 5,
+      "sourceSlide": 5,
+      "narrativeRole": "future scope",
+      "reuseMode": "duplicate-slide",
+      "editTargets": []
+    },
+    {
+      "outputSlide": 6,
+      "sourceSlide": 6,
+      "narrativeRole": "closing",
+      "reuseMode": "duplicate-slide",
+      "editTargets": []
+    }
+  ],
+  "omittedSourceSlides": []
+}

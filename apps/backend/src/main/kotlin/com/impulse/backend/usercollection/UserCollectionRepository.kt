@@ -11,6 +11,10 @@ interface UserCollectionRepository : JpaRepository<UserCollection, UUID> {
 
 interface UserCollectionSourceRepository : JpaRepository<UserCollectionSource, UUID> {
     fun existsByCollectionIdAndUserIdAndUrl(collectionId: UUID, userId: UUID, url: String): Boolean
+    fun findByIdAndCollectionIdAndUserId(id: UUID, collectionId: UUID, userId: UUID): UserCollectionSource?
+    fun deleteAllByCollectionIdAndUserId(collectionId: UUID, userId: UUID)
+    fun deleteAllByUserIdAndMemoryId(userId: UUID, memoryId: UUID)
+    fun deleteAllByUserId(userId: UUID)
     fun findAllByCollectionIdAndUserIdOrderByCreatedAtAsc(
         collectionId: UUID,
         userId: UUID,

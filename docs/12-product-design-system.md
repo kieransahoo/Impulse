@@ -228,34 +228,34 @@ The current mark is a white italic `I` inside a near-black rounded square.
 
 | Token | Hex | Role |
 |---|---:|---|
-| `Ink` | `#171714` | Primary text, dark surfaces |
-| `Muted` | `#69685F` | Secondary text |
-| `Paper` | `#F5F3EC` | App background |
-| `Surface` | `#FFFDF7` | Primary cards and sheets |
-| `SurfaceBright` | `#FFFEFB` | Inputs and nested cards |
-| `Outline` | `#DCD8CA` | Borders and dividers |
-| `Primary` | `#E85D35` | Main action and accent |
-| `PrimaryPressed` | `#BC3F20` | Pressed/strong accent |
-| `Secondary` | `#D6EE72` | Useful output and secondary action |
-| `Success` | `#26734D` | Ready and completed |
+| `Ink` | `#24231F` | Primary text and completion emphasis |
+| `Muted` | `#6D6A63` | Secondary text |
+| `Paper` | `#F7F5EF` | App background |
+| `Surface` | `#FFFEFA` | Primary cards and sheets |
+| `SurfaceBright` | `#FFFFFF` | Inputs and nested cards |
+| `Outline` | `#DFDBD0` | Borders and dividers |
+| `Primary` | `#CC4824` | Main action and accessible coral accent |
+| `PrimaryPressed` | `#A93619` | Pressed/strong accent |
+| `Secondary` | `#F4DACF` | Soft coral selection and generated output |
+| `Success` | `#24231F` | Completed state paired with a check and label |
 | `Error` | `#A33D32` | Failure and destructive state |
-| `Warning` | `#D79C35` | Processing and attention |
-| `DarkSurface` | `#20201D` | Featured plan container |
-| `DarkSurfaceRaised` | `#292925` | Source card on dark surface |
-| `DarkInput` | `#2D2D29` | Input on dark surface |
-| `DarkOutline` | `#44443E` | Dark-theme divider |
-| `OnDarkMuted` | `#AAA99F` | Secondary text on dark surfaces |
+| `Warning` | `#806C52` | Processing and attention |
+| `DarkSurface` | `#494640` | Featured plan container |
+| `DarkSurfaceRaised` | `#57534C` | Source card on dark surface |
+| `DarkInput` | `#3D3A35` | Input on dark surface |
+| `DarkOutline` | `#7B766D` | Dark-surface divider |
+| `OnDarkMuted` | `#E4E0D7` | Secondary text on dark surfaces |
 
 ### Supporting state containers
 
 | Token | Hex |
 |---|---:|
-| `SuccessContainer` | `#E6F3E9` |
-| `SuccessContainerSoft` | `#EFF8F0` |
+| `SuccessContainer` | `#ECEAE4` |
+| `SuccessContainerSoft` | `#F3F1EC` |
 | `ErrorContainer` | `#FAE7E3` |
 | `ErrorContainerSoft` | `#FFF0EC` |
-| `AccentContainer` | `#F4DACF` |
-| `NeutralContainer` | `#EFECDF` |
+| `AccentContainer` | `#F8E7E0` |
+| `NeutralContainer` | `#F0EDE5` |
 
 ### Color usage rules
 
@@ -272,7 +272,7 @@ The current mark is a white italic `I` inside a near-black rounded square.
 The current web design uses a dark featured planning surface, not a complete
 dark theme. For Android dark mode:
 
-- Preserve orange and lime brand accents.
+- Preserve coral as the single brand accent and keep supporting surfaces neutral.
 - Use a warm charcoal background rather than pure black.
 - Recalculate all content colors for accessible contrast.
 - Do not simply invert the light palette.

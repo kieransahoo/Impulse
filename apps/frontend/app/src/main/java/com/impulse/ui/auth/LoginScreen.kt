@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -29,6 +30,11 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -41,12 +47,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -65,9 +73,12 @@ fun LoginScreen(
     viewModel: LoginViewModel = viewModel()
 ) {
     val context = LocalContext.current
+    val keyboard = LocalSoftwareKeyboardController.current
     val uiState by viewModel.uiState.collectAsState()
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var passwordVisible by remember { mutableStateOf(false) }
+    var displayName by remember { mutableStateOf("") }
     var registering by remember { mutableStateOf(false) }
 
     LaunchedEffect(uiState) {
@@ -75,7 +86,8 @@ fun LoginScreen(
     }
 
     val submit = {
-        if (registering) viewModel.register(context, email, password)
+        keyboard?.hide()
+        if (registering) viewModel.register(context, email, displayName, password)
         else viewModel.signIn(context, email, password)
     }
 
@@ -86,6 +98,7 @@ fun LoginScreen(
             .verticalScroll(rememberScrollState())
             .statusBarsPadding()
             .navigationBarsPadding()
+            .imePadding()
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -113,6 +126,16 @@ fun LoginScreen(
         )
         Spacer(Modifier.height(32.dp))
 
+        if (registering) {
+            AuthField(
+                value = displayName,
+                onValueChange = { displayName = it; viewModel.resetError() },
+                label = "Name",
+                keyboardType = KeyboardType.Text,
+                imeAction = ImeAction.Next
+            )
+            Spacer(Modifier.height(14.dp))
+        }
         AuthField(
             value = email,
             onValueChange = { email = it; viewModel.resetError() },
@@ -128,6 +151,8 @@ fun LoginScreen(
             keyboardType = KeyboardType.Password,
             imeAction = ImeAction.Done,
             password = true,
+            passwordVisible = passwordVisible,
+            onTogglePassword = { passwordVisible = !passwordVisible },
             onDone = submit
         )
         Text(
@@ -191,6 +216,8 @@ private fun AuthField(
     keyboardType: KeyboardType,
     imeAction: ImeAction,
     password: Boolean = false,
+    passwordVisible: Boolean = false,
+    onTogglePassword: () -> Unit = {},
     onDone: () -> Unit = {}
 ) {
     OutlinedTextField(
@@ -200,7 +227,17 @@ private fun AuthField(
         modifier = Modifier.fillMaxWidth(),
         singleLine = true,
         shape = RoundedCornerShape(12.dp),
-        visualTransformation = if (password) PasswordVisualTransformation() else androidx.compose.ui.text.input.VisualTransformation.None,
+        visualTransformation = if (password && !passwordVisible) PasswordVisualTransformation() else VisualTransformation.None,
+        trailingIcon = if (password) {
+            {
+                IconButton(onClick = onTogglePassword) {
+                    Icon(
+                        if (passwordVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility,
+                        contentDescription = if (passwordVisible) "Hide password" else "Show password"
+                    )
+                }
+            }
+        } else null,
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction = imeAction),
         keyboardActions = KeyboardActions(onDone = { onDone() }),
         colors = OutlinedTextFieldDefaults.colors(

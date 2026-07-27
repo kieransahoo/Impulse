@@ -20,10 +20,10 @@ class UserCollection(
     val userId: UUID,
 
     @Column(nullable = false, length = 200)
-    val name: String,
+    var name: String,
 
     @Column(columnDefinition = "text")
-    val description: String?,
+    var description: String?,
 
     @Column(name = "created_at", nullable = false, updatable = false)
     var createdAt: Instant = Instant.now(),

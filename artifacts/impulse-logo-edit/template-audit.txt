@@ -1,0 +1,7 @@
+Source deck: Impulse_AI_PPT.pptx
+Slides: 6
+Edit scope: slide 1 only.
+Preserve: all source text, image, typography, background, notes, masters, layouts, and slides 2–6.
+Brand asset: official Impulse foreground/background vector geometry from Android resources.
+Insertion: 38 × 38 px icon in the top-left brand rail; move the existing brand-line textbox right to maintain spacing.
+No inherited placeholders require changes.

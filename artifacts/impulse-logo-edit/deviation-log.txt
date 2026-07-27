@@ -1,0 +1,2 @@
+Slide 1: Added the authentic Impulse app icon in the top-left brand rail and moved the existing brand line right by 48 px.
+Slides 2–6: No changes.

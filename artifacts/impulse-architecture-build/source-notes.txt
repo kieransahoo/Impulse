@@ -1,0 +1,16 @@
+Deck content is grounded in repository documentation and implementation:
+- Impulse_Presentation_QA.md
+- docs/01-product-overview.md
+- docs/02-system-architecture.md
+- docs/04-rag-design.md
+- apps/backend and apps/ai-service implementation references listed in slide notes
+
+Team names were inferred from repository commit history:
+- Kiran Kumar Sahoo
+- Apurvaa Avinandita
+- Jagadheshvar B P
+
+Cover visual provenance:
+- OpenAI ImageGen edit of the prior repository visual, recolored to the
+  canonical Impulse design tokens, saved at:
+  artifacts/impulse-architecture-build/assets/content-to-knowledge-impulse-theme.png

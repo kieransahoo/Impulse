@@ -14,6 +14,7 @@ data class ShareUiState(
     val saving: Boolean = false,
     val collections: List<UserCollectionResponse> = emptyList(),
     val selectedCollectionId: String? = null,
+    val newCollectionName: String? = null,
     val error: String? = null,
     val saved: Boolean = false
 )
@@ -43,16 +44,33 @@ class ShareViewModel : ViewModel() {
     }
 
     fun select(collectionId: String?) {
-        _state.value = _state.value.copy(selectedCollectionId = collectionId, error = null)
+        _state.value = _state.value.copy(
+            selectedCollectionId = collectionId,
+            newCollectionName = null,
+            error = null
+        )
+    }
+
+    fun selectNewCollection(name: String) {
+        val trimmed = name.trim()
+        if (trimmed.length < 2) {
+            _state.value = _state.value.copy(error = "Collection name must contain at least 2 characters.")
+            return
+        }
+        _state.value = _state.value.copy(
+            selectedCollectionId = null,
+            newCollectionName = trimmed,
+            error = null
+        )
     }
 
     fun save(userId: String, url: String, note: String?) {
         viewModelScope.launch {
             _state.value = _state.value.copy(saving = true, error = null)
-            val selectedName = _state.value.selectedCollectionId
-                ?.let { id -> _state.value.collections.firstOrNull { it.id == id }?.name }
-                ?: "ALL"
-            repository.save(userId, url, selectedName, note).fold(
+            val request = _state.value.newCollectionName?.let { name ->
+                repository.saveToNewCollection(userId, url, name, note)
+            } ?: repository.save(userId, url, _state.value.selectedCollectionId, note)
+            request.fold(
                 onSuccess = { _state.value = _state.value.copy(saving = false, saved = true) },
                 onFailure = {
                     _state.value = _state.value.copy(

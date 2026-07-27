@@ -16,7 +16,11 @@ import java.util.concurrent.TimeUnit
 object RetrofitClient {
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
-        level = HttpLoggingInterceptor.Level.BODY
+        level = if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor.Level.BASIC
+        } else {
+            HttpLoggingInterceptor.Level.NONE
+        }
     }
 
     private val okHttpClient: OkHttpClient by lazy {

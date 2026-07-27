@@ -1,0 +1,535 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/q9oan9",
+    "id": "q9oan9",
+    "slide": 1,
+    "layoutId": "51830844-80ef-4a8e-9f87-438255b2c626",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "7d6e642e-6c49-4edc-ab84-ad9600edcc1e",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F7F5EF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Arial",
+      "Georgia"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "51830844-80ef-4a8e-9f87-438255b2c626",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "7d6e642e-6c49-4edc-ab84-ad9600edcc1e",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "7d6e642e-6c49-4edc-ab84-ad9600edcc1e",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/i9s7md8r",
+      "id": "1",
+      "bbox": [
+        560,
+        0,
+        720,
+        720
+      ],
+      "alt": "Online content flowing through AI into organized vector knowledge",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "asset": {
+        "assetId": "ccd7170f-b6d4-4cbc-b5dd-3724ed40f0b7",
+        "contentType": "image/png",
+        "byteLength": 1532782
+      }
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kbi1kr6l",
+      "id": "2",
+      "name": "cover-kicker",
+      "bbox": [
+        44,
+        48,
+        500,
+        34
+      ],
+      "geometry": "rect",
+      "text": "IMPULSE • PERSONAL KNOWLEDGE + PLANNING",
+      "textPreview": "IMPULSE • PERSONAL KNOWLEDGE + PLANNING",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "Arial",
+        "color": "#CC4824",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "IMPULSE • PERSONAL KNOWLEDGE + PLANNING"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "IMPULSE • PERSONAL KNOWLEDGE + PLANNING",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Arial",
+            "color": "#CC4824",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "IMPULSE • PERSONAL KNOWLEDGE + PLANNING",
+              "fontSize": 17,
+              "typeface": "Arial",
+              "color": "#CC4824",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lcr2dw76",
+      "id": "3",
+      "name": "cover-title",
+      "bbox": [
+        44,
+        154,
+        470,
+        82
+      ],
+      "geometry": "rect",
+      "text": "Impulse",
+      "textPreview": "Impulse",
+      "resolvedFontSize": 60.33,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 64,
+        "typeface": "Georgia",
+        "color": "#24231F",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 0.94,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Impulse"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Impulse",
+          "resolvedTextStyle": {
+            "fontSize": 64,
+            "typeface": "Georgia",
+            "color": "#24231F",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Impulse",
+              "fontSize": 64,
+              "typeface": "Georgia",
+              "color": "#24231F",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/algjehoj",
+      "id": "4",
+      "name": "cover-tagline",
+      "bbox": [
+        44,
+        240,
+        500,
+        120
+      ],
+      "geometry": "rect",
+      "text": "Save once. Understand once.\nUse it when it matters.",
+      "textPreview": "Save once. Understand once. | Use it when it matters.",
+      "resolvedFontSize": 36,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 36,
+        "typeface": "Georgia",
+        "color": "#24231F",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Save once. Understand once."
+          },
+          {
+            "index": 2,
+            "text": "Use it when it matters."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Save once. Understand once.",
+          "resolvedTextStyle": {
+            "fontSize": 36,
+            "typeface": "Georgia",
+            "color": "#24231F",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Save once. Understand once.",
+              "fontSize": 36,
+              "typeface": "Georgia",
+              "color": "#24231F",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "Use it when it matters.",
+          "resolvedTextStyle": {
+            "fontSize": 36,
+            "typeface": "Georgia",
+            "color": "#24231F",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Use it when it matters.",
+              "fontSize": 36,
+              "typeface": "Georgia",
+              "color": "#24231F",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/b69072p4",
+      "id": "5",
+      "name": "cover-subtitle",
+      "bbox": [
+        44,
+        382,
+        490,
+        90
+      ],
+      "geometry": "rect",
+      "text": "Saved videos, posts and web pages become searchable memories, grounded answers and practical plans.",
+      "textPreview": "Saved videos, posts and web pages become searchable memories, grounded answers and practical plans.",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 22,
+        "typeface": "Arial",
+        "color": "#6D6A63",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Saved videos, posts and web pages become"
+          },
+          {
+            "index": 2,
+            "text": "searchable memories, grounded answers and"
+          },
+          {
+            "index": 3,
+            "text": "practical plans."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Saved videos, posts and web pages become searchable memories, grounded answers and practical plans.",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "Arial",
+            "color": "#6D6A63",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Saved videos, posts and web pages become searchable memories, grounded answers and practical plans.",
+              "fontSize": 22,
+              "typeface": "Arial",
+              "color": "#6D6A63",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c7i1g76p",
+      "id": "6",
+      "name": "cover-team-label",
+      "bbox": [
+        44,
+        548,
+        90,
+        24
+      ],
+      "geometry": "rect",
+      "text": "TEAM",
+      "textPreview": "TEAM",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 16,
+        "typeface": "Arial",
+        "color": "#CC4824",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 0.75,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "TEAM"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "TEAM",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "typeface": "Arial",
+            "color": "#CC4824",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "TEAM",
+              "fontSize": 16,
+              "typeface": "Arial",
+              "color": "#CC4824",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x8r29c7a",
+      "id": "7",
+      "name": "cover-team",
+      "bbox": [
+        44,
+        576,
+        490,
+        54
+      ],
+      "geometry": "rect",
+      "text": "Kiran Kumar Sahoo  •  Apurvaa Avinandita  •  Jagadheshvar B P",
+      "textPreview": "Kiran Kumar Sahoo  •  Apurvaa Avinandita  •  Jagadheshvar B P",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "Arial",
+        "color": "#24231F",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Kiran Kumar Sahoo  •  Apurvaa Avinandita  •"
+          },
+          {
+            "index": 2,
+            "text": "Jagadheshvar B P"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Kiran Kumar Sahoo  •  Apurvaa Avinandita  •  Jagadheshvar B P",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Arial",
+            "color": "#24231F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Kiran Kumar Sahoo  •  Apurvaa Avinandita  •  Jagadheshvar B P",
+              "fontSize": 17,
+              "typeface": "Arial",
+              "color": "#24231F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

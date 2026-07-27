@@ -9,4 +9,6 @@ interface MemoryRepository : JpaRepository<Memory, UUID> {
     fun existsByUserIdAndSourceUrl(userId: UUID, sourceUrl: String): Boolean
 
     fun findByUserIdAndSourceUrl(userId: UUID, sourceUrl: String): Memory?
+    fun findByIdAndUserId(id: UUID, userId: UUID): Memory?
+    fun deleteAllByUserId(userId: UUID)
 }

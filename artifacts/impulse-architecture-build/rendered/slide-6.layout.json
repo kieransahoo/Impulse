@@ -1,0 +1,471 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/2bb758",
+    "id": "2bb758",
+    "slide": 6,
+    "layoutId": "51830844-80ef-4a8e-9f87-438255b2c626",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "7d6e642e-6c49-4edc-ab84-ad9600edcc1e",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F7F5EF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Arial",
+      "Georgia"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "51830844-80ef-4a8e-9f87-438255b2c626",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "7d6e642e-6c49-4edc-ab84-ad9600edcc1e",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "7d6e642e-6c49-4edc-ab84-ad9600edcc1e",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/xg3it4ru",
+      "id": "1",
+      "bbox": [
+        730,
+        0,
+        550,
+        720
+      ],
+      "alt": "Content flowing into AI knowledge for the closing question slide",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "asset": {
+        "assetId": "7782caf0-f3ed-4212-9c11-e65db326678b",
+        "contentType": "image/png",
+        "byteLength": 1532782
+      }
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bi9wvu98",
+      "id": "2",
+      "name": "qa-kicker",
+      "bbox": [
+        44,
+        52,
+        400,
+        30
+      ],
+      "geometry": "rect",
+      "text": "IMPULSE • CREATORBRAIN",
+      "textPreview": "IMPULSE • CREATORBRAIN",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "Arial",
+        "color": "#CC4824",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "IMPULSE • CREATORBRAIN"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "IMPULSE • CREATORBRAIN",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "Arial",
+            "color": "#CC4824",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "IMPULSE • CREATORBRAIN",
+              "fontSize": 17,
+              "typeface": "Arial",
+              "color": "#CC4824",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qh0v2psn",
+      "id": "3",
+      "name": "qa-title",
+      "bbox": [
+        44,
+        214,
+        560,
+        92
+      ],
+      "geometry": "rect",
+      "text": "Questions?",
+      "textPreview": "Questions?",
+      "resolvedFontSize": 62,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 62,
+        "typeface": "Georgia",
+        "color": "#24231F",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Questions?"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Questions?",
+          "resolvedTextStyle": {
+            "fontSize": 62,
+            "typeface": "Georgia",
+            "color": "#24231F",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Questions?",
+              "fontSize": 62,
+              "typeface": "Georgia",
+              "color": "#24231F",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/pgrutkri",
+      "id": "4",
+      "name": "qa-subtitle",
+      "bbox": [
+        44,
+        328,
+        560,
+        96
+      ],
+      "geometry": "rect",
+      "text": "Save once. Understand once.\nRetrieve whenever it matters.",
+      "textPreview": "Save once. Understand once. | Retrieve whenever it matters.",
+      "resolvedFontSize": 28,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 28,
+        "typeface": "Arial",
+        "color": "#6D6A63",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Save once. Understand once."
+          },
+          {
+            "index": 2,
+            "text": "Retrieve whenever it matters."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Save once. Understand once.",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "typeface": "Arial",
+            "color": "#6D6A63",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Save once. Understand once.",
+              "fontSize": 28,
+              "typeface": "Arial",
+              "color": "#6D6A63",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "Retrieve whenever it matters.",
+          "resolvedTextStyle": {
+            "fontSize": 28,
+            "typeface": "Arial",
+            "color": "#6D6A63",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Retrieve whenever it matters.",
+              "fontSize": 28,
+              "typeface": "Arial",
+              "color": "#6D6A63",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ofid0fax",
+      "id": "5",
+      "name": "qa-prompt",
+      "bbox": [
+        44,
+        512,
+        600,
+        92
+      ],
+      "geometry": "rect",
+      "fillColor": "#F0EDE5",
+      "lineColor": "#F0EDE5",
+      "lineWidth": 1.5
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3e9cra9c",
+      "id": "6",
+      "name": "qa-prompt-text",
+      "bbox": [
+        72,
+        532,
+        544,
+        48
+      ],
+      "geometry": "rect",
+      "text": "Capture → Understand → Embed → Retrieve → Answer",
+      "textPreview": "Capture → Understand → Embed → Retrieve → Answer",
+      "resolvedFontSize": 19.85,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 21,
+        "typeface": "Arial",
+        "color": "#24231F",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 0.95,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Capture → Understand → Embed → Retrieve → Answer"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Capture → Understand → Embed → Retrieve → Answer",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "typeface": "Arial",
+            "color": "#24231F",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Capture → Understand → Embed → Retrieve → Answer",
+              "fontSize": 21,
+              "typeface": "Arial",
+              "color": "#24231F",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2d0vy5sr",
+      "id": "7",
+      "name": "qa-number",
+      "bbox": [
+        672,
+        660,
+        40,
+        22
+      ],
+      "geometry": "rect",
+      "text": "06",
+      "textPreview": "06",
+      "resolvedFontSize": 10.33,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 13,
+        "typeface": "Arial",
+        "color": "#6D6A63",
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "autoFit": "shrinkText",
+        "autoFitScale": 0.79,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "06"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "06",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "typeface": "Arial",
+            "color": "#6D6A63",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "06",
+              "fontSize": 13,
+              "typeface": "Arial",
+              "color": "#6D6A63",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

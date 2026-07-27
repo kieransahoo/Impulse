@@ -29,7 +29,8 @@
         <activity
             android:name=".ui.share.ShareActivity"
             android:exported="true"
-            android:theme="@style/Theme.MyApplication">
+            android:theme="@style/Theme.MyApplication"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />

@@ -1,0 +1,156 @@
+{"kind":"deck","id":"pr/xj2dte","name":"Deck"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"","type":"master"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"TITLE","type":"title"}
+{"kind":"slide","id":"sl/v1412b","slide":1,"title":"IMPULSE • PERSONAL KNOWLEDGE + PLANNING","textShapes":6}
+{"kind":"textbox","id":"sh/tof6lonq","slide":1,"name":"Google Shape;17;p3","text":"IMPULSE • PERSONAL KNOWLEDGE + PLANNING","textPreview":"IMPULSE • PERSONAL KNOWLEDGE + PLANNING","textChars":39,"textLines":1,"bbox":[44,48,500,34]}
+{"kind":"textbox","id":"sh/uponutob","slide":1,"name":"Google Shape;18;p3","text":"Impulse","textPreview":"Impulse","textChars":7,"textLines":1,"bbox":[44,154,470,82]}
+{"kind":"textbox","id":"sh/vqhony5w","slide":1,"name":"Google Shape;19;p3","text":"Save once. Understand once.\nUse it when it matters.","textPreview":"Save once. Understand once. | Use it when it matters.","textChars":51,"textLines":2,"bbox":[44,240,500,120]}
+{"kind":"textbox","id":"sh/reh4bylo","slide":1,"name":"Google Shape;20;p3","text":"Saved videos, posts and web pages become searchable memories, grounded answers and practical plans.","textPreview":"Saved videos, posts and web pages become searchable memories, grounded answers and practical plans.","textChars":99,"textLines":1,"bbox":[44,382,490,90]}
+{"kind":"textbox","id":"sh/qd832dkj","slide":1,"name":"Google Shape;21;p3","text":"TEAM","textPreview":"TEAM","textChars":4,"textLines":1,"bbox":[44,548,90,24]}
+{"kind":"textbox","id":"sh/dgzmd83u","slide":1,"name":"Google Shape;22;p3","text":"Kiran Kumar Sahoo  •  Apurvaa Avinandita  •  Jagadheshvar B P","textPreview":"Kiran Kumar Sahoo  •  Apurvaa Avinandita  •  Jagadheshvar B P","textChars":61,"textLines":1,"bbox":[44,576,490,54]}
+{"kind":"image","id":"im/zelk7ilg","slide":1,"name":"Google Shape;16;p3","bbox":[560,0,720,720]}
+{"kind":"notes","id":"nt/v1412b","slide":1,"text":"Impulse solves a simple problem: useful ideas are scattered across saved links. The application turns those sources into structured, searchable memory and grounded answers.\n\n[Sources]\n- Generated visual: OpenAI ImageGen; prompt recorded in task history."}
+{"kind":"slide","id":"sl/b151sc","slide":2,"title":"A saved link is not yet useful knowledge","textShapes":12}
+{"kind":"textbox","id":"sh/ovytonyd","slide":2,"name":"Google Shape;28;p4","text":"A saved link is not yet useful knowledge","textPreview":"A saved link is not yet useful knowledge","textChars":40,"textLines":1,"bbox":[42,28,1150,72]}
+{"kind":"textbox","id":"sh/9w7uxszy","slide":2,"name":"Google Shape;29;p4","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1188,660,50,22]}
+{"kind":"textbox","id":"sh/r65c7i1k","slide":2,"name":"Google Shape;30;p4","text":"Customer problem","textPreview":"Customer problem","textChars":16,"textLines":1,"bbox":[44,122,250,32]}
+{"kind":"textbox","id":"sh/q5wvedkz","slide":2,"name":"Google Shape;31;p4","text":"Links are fragmented.\nDetails are forgotten.\nGeneric AI lacks context.","textPreview":"Links are fragmented. | Details are forgotten. | Generic AI lacks context.","textChars":70,"textLines":3,"bbox":[44,168,480,190]}
+{"kind":"shape","id":"sh/ds7u9sjq","slide":2,"name":"Google Shape;32;p4","bbox":[555,250,120,44]}
+{"kind":"textbox","id":"sh/crydgn25","slide":2,"name":"Google Shape;33;p4","text":"How Impulse solves it","textPreview":"How Impulse solves it","textChars":21,"textLines":1,"bbox":[710,122,300,32]}
+{"kind":"shape","id":"sh/zupwbi1w","slide":2,"name":"Google Shape;34;p4","bbox":[710,170,490,92]}
+{"kind":"shape","id":"sh/etgvix0b","slide":2,"name":"Google Shape;35;p4","bbox":[710,170,8,92]}
+{"kind":"textbox","id":"sh/1w7edsjm","slide":2,"name":"Google Shape;36;p4","text":"Understand once","textPreview":"Understand once","textChars":15,"textLines":1,"bbox":[732,183,456,32]}
+{"kind":"textbox","id":"sh/0vydkni1","slide":2,"name":"Google Shape;37;p4","text":"Extract compact facts, topics and useful actions.","textPreview":"Extract compact facts, topics and useful actions.","textChars":49,"textLines":1,"bbox":[732,218,456,34]}
+{"kind":"shape","id":"sh/ny9wf21s","slide":2,"name":"Google Shape;38;p4","bbox":[710,282,490,92]}
+{"kind":"shape","id":"sh/mxgvmx07","slide":2,"name":"Google Shape;39;p4","bbox":[710,282,8,92]}
+{"kind":"textbox","id":"sh/61ofi18j","slide":2,"name":"Google Shape;40;p4","text":"Store for retrieval","textPreview":"Store for retrieval","textChars":19,"textLines":1,"bbox":[732,295,456,32]}
+{"kind":"textbox","id":"sh/72hgb694","slide":2,"name":"Google Shape;41;p4","text":"Keep human-readable data and its vector meaning.","textPreview":"Keep human-readable data and its vector meaning.","textChars":48,"textLines":1,"bbox":[732,330,456,34]}
+{"kind":"shape","id":"sh/83qxkbqp","slide":2,"name":"Google Shape;42;p4","bbox":[710,394,490,92]}
+{"kind":"shape","id":"sh/t4zydgru","slide":2,"name":"Google Shape;43;p4","bbox":[710,394,8,92]}
+{"kind":"textbox","id":"sh/u58fml8f","slide":2,"name":"Google Shape;44;p4","text":"Answer with evidence","textPreview":"Answer with evidence","textChars":20,"textLines":1,"bbox":[732,407,456,32]}
+{"kind":"textbox","id":"sh/v6hgfq90","slide":2,"name":"Google Shape;45;p4","text":"Retrieve relevant memories before the final LLM responds.","textPreview":"Retrieve relevant memories before the final LLM responds.","textChars":57,"textLines":1,"bbox":[732,442,456,34]}
+{"kind":"shape","id":"sh/g7qxovql","slide":2,"name":"Google Shape;46;p4","bbox":[44,520,1156,92]}
+{"kind":"textbox","id":"sh/h8zyhgr6","slide":2,"name":"Google Shape;47;p4","text":"Target customers: students, creators, travelers and professionals who save useful content but cannot find or reuse it when needed.","textPreview":"Target customers: students, creators, travelers and professionals who save useful content but cannot find or reuse it when needed.","textChars":130,"textLines":1,"bbox":[72,535,1100,60]}
+{"kind":"notes","id":"nt/b151sc","slide":2,"text":"Saving a URL alone does not preserve meaning. The extension captures content, the Android application provides the user experience, and both rely on the same backend memory pipeline.\n\n[Sources]\n- docs/01-product-overview.md\n- docs/10-browser-extension.md\n- apps/frontend/app/src/main/java/com/impulse/ui/main/MainScreen.kt"}
+{"kind":"slide","id":"sl/bs8upw","slide":3,"title":"One end-to-end flow turns a URL into searchable memory","textShapes":15}
+{"kind":"textbox","id":"sh/adgnyps3","slide":3,"name":"Google Shape;53;p5","text":"One end-to-end flow turns a URL into searchable memory","textPreview":"One end-to-end flow turns a URL into searchable memory","textChars":54,"textLines":1,"bbox":[42,28,1150,72]}
+{"kind":"textbox","id":"sh/9c765kri","slide":3,"name":"Google Shape;54;p5","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1188,660,50,22]}
+{"kind":"textbox","id":"sh/8by5wfad","slide":3,"name":"Google Shape;55;p5","text":"Capture → trusted backend → AI understanding → searchable memory","textPreview":"Capture → trusted backend → AI understanding → searchable memory","textChars":64,"textLines":1,"bbox":[44,100,900,32]}
+{"kind":"shape","id":"sh/napo3a9s","slide":3,"name":"Google Shape;56;p5","bbox":[225,282,55,36]}
+{"kind":"shape","id":"sh/m9wnu5s7","slide":3,"name":"Google Shape;57;p5","bbox":[474,282,55,36]}
+{"kind":"shape","id":"sh/t8r6h4r2","slide":3,"name":"Google Shape;58;p5","bbox":[723,282,55,36]}
+{"kind":"shape","id":"sh/s7ip8zqh","slide":3,"name":"Google Shape;59;p5","bbox":[972,282,55,36]}
+{"kind":"shape","id":"sh/cnah072p","slide":3,"name":"Google Shape;60;p5","bbox":[44,208,181,184]}
+{"kind":"shape","id":"sh/dojitc3a","slide":3,"name":"Google Shape;61;p5","bbox":[44,208,8,184]}
+{"kind":"textbox","id":"sh/qlszyxkz","slide":3,"name":"Google Shape;62;p5","text":"1  Capture","textPreview":"1  Capture","textChars":10,"textLines":1,"bbox":[66,221,147,32]}
+{"kind":"textbox","id":"sh/rm10r2l4","slide":3,"name":"Google Shape;63;p5","text":"Chrome or Android sends URL, visible content and user note.","textPreview":"Chrome or Android sends URL, visible content and user note.","textChars":59,"textLines":1,"bbox":[66,256,147,126]}
+{"kind":"shape","id":"sh/4jahw72t","slide":3,"name":"Google Shape;64;p5","bbox":[280,208,194,184]}
+{"kind":"shape","id":"sh/pkjipc3e","slide":3,"name":"Google Shape;65;p5","bbox":[280,208,8,184]}
+{"kind":"textbox","id":"sh/2x8zuxkn","slide":3,"name":"Google Shape;66;p5","text":"2  Backend","textPreview":"2  Backend","textChars":10,"textLines":1,"bbox":[302,221,160,32]}
+{"kind":"textbox","id":"sh/3ihgn2l8","slide":3,"name":"Google Shape;67;p5","text":"Validates source, user and payload. Calls the AI service.","textPreview":"Validates source, user and payload. Calls the AI service.","textChars":57,"textLines":1,"bbox":[302,256,160,126]}
+{"kind":"shape","id":"sh/gvqhsn2h","slide":3,"name":"Google Shape;68;p5","bbox":[529,208,194,184]}
+{"kind":"shape","id":"sh/hwzyls32","slide":3,"name":"Google Shape;69;p5","bbox":[529,208,8,184]}
+{"kind":"textbox","id":"sh/jqx0bi54","slide":3,"name":"Google Shape;70;p5","text":"3  AI service","textPreview":"3  AI service","textChars":13,"textLines":1,"bbox":[551,221,160,32]}
+{"kind":"textbox","id":"sh/ipoz2doj","slide":3,"name":"Google Shape;71;p5","text":"Extracts supplied text, analyzes them, creates embedding and stores them in databases.","textPreview":"Extracts supplied text, analyzes them, creates embedding and stores them in databases.","textChars":86,"textLines":1,"bbox":[551,256,160,126]}
+{"kind":"shape","id":"sh/5szidsna","slide":3,"name":"Google Shape;72;p5","bbox":[778,208,194,184]}
+{"kind":"shape","id":"sh/kr614n6p","slide":3,"name":"Google Shape;73;p5","bbox":[778,208,8,184]}
+{"kind":"textbox","id":"sh/7uh0f250","slide":3,"name":"Google Shape;74;p5","text":"4  First LLM","textPreview":"4  First LLM","textChars":12,"textLines":1,"bbox":[800,221,160,32]}
+{"kind":"textbox","id":"sh/6t8j6xof","slide":3,"name":"Google Shape;75;p5","text":"Creates summary, category, tags, topics and actions.","textPreview":"Creates summary, category, tags, topics and actions.","textChars":52,"textLines":1,"bbox":[800,256,160,126]}
+{"kind":"shape","id":"sh/tgzihsn6","slide":3,"name":"Google Shape;76;p5","bbox":[1027,208,181,184]}
+{"kind":"shape","id":"sh/svq1876l","slide":3,"name":"Google Shape;77;p5","bbox":[1027,208,8,184]}
+{"kind":"textbox","id":"sh/fih0j25c","slide":3,"name":"Google Shape;78;p5","text":"5  Persist","textPreview":"5  Persist","textChars":10,"textLines":1,"bbox":[1049,221,147,32]}
+{"kind":"textbox","id":"sh/uh8jaxor","slide":3,"name":"Google Shape;79;p5","text":"Stores structured memory plus a 768-value embedding.","textPreview":"Stores structured memory plus a 768-value embedding.","textChars":52,"textLines":1,"bbox":[1049,256,147,126]}
+{"kind":"shape","id":"sh/25o3y1kv","slide":3,"name":"Google Shape;80;p5","bbox":[44,450,1164,122]}
+{"kind":"textbox","id":"sh/36h4761g","slide":3,"name":"Google Shape;81;p5","text":"What is saved","textPreview":"What is saved","textChars":13,"textLines":1,"bbox":[68,466,250,30]}
+{"kind":"textbox","id":"sh/o7ql0b21","slide":3,"name":"Google Shape;82;p5","text":"PostgreSQL: URL, title, summary, category, tags, topics and actions   •   pgvector: 768 numbers representing semantic meaning","textPreview":"PostgreSQL: URL, title, summary, category, tags, topics and actions   •   pgvector: 768 numbers representing semantic meaning","textChars":125,"textLines":1,"bbox":[68,506,1090,44]}
+{"kind":"notes","id":"nt/bs8upw","slide":3,"text":"The client never talks directly to the database or Gemini. Spring Boot validates the request, calls the FastAPI AI service, validates the returned 768-value embedding, and saves the memory.\n\n[Sources]\n- apps/extension/utils/extractors.js\n- apps/backend/src/main/kotlin/com/impulse/backend/memory/MemoryService.kt\n- apps/backend/src/main/kotlin/com/impulse/backend/memory/AiMemoryProcessor.kt\n- apps/ai-service/memory_processor.py"}
+{"kind":"slide","id":"sl/73nxsx","slide":4,"title":"LLM and RAG: understand once, find the right memory, answer","textShapes":26}
+{"kind":"textbox","id":"sh/4jud4zul","slide":4,"name":"Google Shape;88;p6","text":"LLM and RAG: understand once, find the right memory, answer","textPreview":"LLM and RAG: understand once, find the right memory, answer","textChars":59,"textLines":1,"bbox":[42,28,1150,72]}
+{"kind":"textbox","id":"sh/5knux4v6","slide":4,"name":"Google Shape;89;p6","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1188,660,50,22]}
+{"kind":"textbox","id":"sh/fepw3yx8","slide":4,"name":"Google Shape;90;p6","text":"INGEST • happens once per new source","textPreview":"INGEST • happens once per new source","textChars":36,"textLines":1,"bbox":[44,108,440,28]}
+{"kind":"shape","id":"sh/edgfutwn","slide":4,"name":"Google Shape;91;p6","bbox":[245,190,50,32]}
+{"kind":"shape","id":"sh/1g7e58fe","slide":4,"name":"Google Shape;92;p6","bbox":[500,190,50,32]}
+{"kind":"shape","id":"sh/0fyxw3et","slide":4,"name":"Google Shape;93;p6","bbox":[755,190,50,32]}
+{"kind":"shape","id":"sh/ra5wzyxc","slide":4,"name":"Google Shape;94;p6","bbox":[1010,190,50,32]}
+{"kind":"shape","id":"sh/qpwfqtwr","slide":4,"name":"Google Shape;95;p6","bbox":[44,150,201,112]}
+{"kind":"shape","id":"sh/dc7e18f2","slide":4,"name":"Google Shape;96;p6","bbox":[44,150,8,112]}
+{"kind":"textbox","id":"sh/sbyxs3ex","slide":4,"name":"Google Shape;97;p6","text":"Source content","textPreview":"Source content","textChars":14,"textLines":1,"bbox":[66,163,167,32]}
+{"kind":"textbox","id":"sh/b69gbixg","slide":4,"name":"Google Shape;98;p6","text":"Videos, Posts, Caption, visible text","textPreview":"Videos, Posts, Caption, visible text","textChars":36,"textLines":1,"bbox":[66,198,167,54]}
+{"kind":"shape","id":"sh/al0f2dwv","slide":4,"name":"Google Shape;99;p6","bbox":[295,150,205,112]}
+{"kind":"shape","id":"sh/b2xo3ad8","slide":4,"name":"Google Shape;100;p6","bbox":[295,150,8,112]}
+{"kind":"textbox","id":"sh/a1ona5w3","slide":4,"name":"Google Shape;101;p6","text":"First LLM","textPreview":"First LLM","textChars":9,"textLines":1,"bbox":[317,163,171,32]}
+{"kind":"textbox","id":"sh/x4f65kve","slide":4,"name":"Google Shape;102;p6","text":"Turns content into clean notes and tags","textPreview":"Turns content into clean notes and tags","textChars":39,"textLines":1,"bbox":[317,198,171,54]}
+{"kind":"shape","id":"sh/w365cfet","slide":4,"name":"Google Shape;103;p6","bbox":[550,150,205,112]}
+{"kind":"shape","id":"sh/j6xo7adk","slide":4,"name":"Google Shape;104;p6","bbox":[550,150,8,112]}
+{"kind":"textbox","id":"sh/y5one5wz","slide":4,"name":"Google Shape;105;p6","text":"Embedding","textPreview":"Embedding","textChars":9,"textLines":1,"bbox":[572,163,171,32]}
+{"kind":"textbox","id":"sh/lsz69kvq","slide":4,"name":"Google Shape;106;p6","text":"Meaning becomes 768 numbers","textPreview":"Meaning becomes 768 numbers","textChars":27,"textLines":1,"bbox":[572,198,171,54]}
+{"kind":"shape","id":"sh/krq5gfe5","slide":4,"name":"Google Shape;107;p6","bbox":[805,150,205,112]}
+{"kind":"shape","id":"sh/zadovqd0","slide":4,"name":"Google Shape;108;p6","bbox":[805,150,8,112]}
+{"kind":"textbox","id":"sh/e94n2lwv","slide":4,"name":"Google Shape;109;p6","text":"Memory store","textPreview":"Memory store","textChars":12,"textLines":1,"bbox":[827,163,171,32]}
+{"kind":"textbox","id":"sh/4filcrud","slide":4,"name":"Google Shape;110;p6","text":"PostgreSQL + pgvector","textPreview":"PostgreSQL + pgvector","textChars":21,"textLines":1,"bbox":[827,198,171,54]}
+{"kind":"shape","id":"sh/pgr25wby","slide":4,"name":"Google Shape;111;p6","bbox":[1060,150,148,112]}
+{"kind":"shape","id":"sh/2d03ahcn","slide":4,"name":"Google Shape;112;p6","bbox":[1060,150,8,112]}
+{"kind":"textbox","id":"sh/3e9k3mts","slide":4,"name":"Google Shape;113;p6","text":"Reusable","textPreview":"Reusable","textChars":8,"textLines":1,"bbox":[1082,163,114,32]}
+{"kind":"textbox","id":"sh/gbil87uh","slide":4,"name":"Google Shape;114;p6","text":"Analyze once","textPreview":"Analyze once","textChars":12,"textLines":1,"bbox":[1082,198,114,54]}
+{"kind":"textbox","id":"sh/hcr21cb2","slide":4,"name":"Google Shape;115;p6","text":"ASK • happens for every question","textPreview":"ASK • happens for every question","textChars":32,"textLines":1,"bbox":[44,314,440,28]}
+{"kind":"shape","id":"sh/u9036xcb","slide":4,"name":"Google Shape;116;p6","bbox":[245,400,50,32]}
+{"kind":"shape","id":"sh/fa9kz2tw","slide":4,"name":"Google Shape;117;p6","bbox":[500,400,50,32]}
+{"kind":"shape","id":"sh/072lkbul","slide":4,"name":"Google Shape;118;p6","bbox":[755,400,50,32]}
+{"kind":"shape","id":"sh/18vmdgb6","slide":4,"name":"Google Shape;119;p6","bbox":[1010,400,50,32]}
+{"kind":"shape","id":"sh/9or2xw3a","slide":4,"name":"Google Shape;120;p6","bbox":[44,360,201,112]}
+{"kind":"shape","id":"sh/8nil4bmp","slide":4,"name":"Google Shape;121;p6","bbox":[44,360,8,112]}
+{"kind":"textbox","id":"sh/nmpkv6l4","slide":4,"name":"Google Shape;122;p6","text":"User question","textPreview":"User question","textChars":13,"textLines":1,"bbox":[66,373,167,32]}
+{"kind":"textbox","id":"sh/m1g3214z","slide":4,"name":"Google Shape;123;p6","text":"Goal and constraints","textPreview":"Goal and constraints","textChars":20,"textLines":1,"bbox":[66,408,167,54]}
+{"kind":"shape","id":"sh/l072tw3e","slide":4,"name":"Google Shape;124;p6","bbox":[295,360,205,112]}
+{"kind":"shape","id":"sh/0zyl0rmt","slide":4,"name":"Google Shape;125;p6","bbox":[295,360,8,112]}
+{"kind":"textbox","id":"sh/zypkrml8","slide":4,"name":"Google Shape;126;p6","text":"Question Embedding","textPreview":"Question Embedding","textChars":18,"textLines":1,"bbox":[317,373,193.01,32]}
+{"kind":"textbox","id":"sh/yxg3yh4n","slide":4,"name":"Google Shape;127;p6","text":"Question becomes 768 numbers","textPreview":"Question becomes 768 numbers","textChars":28,"textLines":1,"bbox":[317,408,171,54]}
+{"kind":"shape","id":"sh/dw72pc32","slide":4,"name":"Google Shape;128;p6","bbox":[550,360,205,112]}
+{"kind":"shape","id":"sh/cve1w7mh","slide":4,"name":"Google Shape;129;p6","bbox":[550,360,8,112]}
+{"kind":"textbox","id":"sh/21czqdkf","slide":4,"name":"Google Shape;130;p6","text":"RAG search","textPreview":"RAG search","textChars":10,"textLines":1,"bbox":[572,373,171,32]}
+{"kind":"textbox","id":"sh/32l0zi10","slide":4,"name":"Google Shape;131;p6","text":"Finds close meaning and matching words","textPreview":"Finds close meaning and matching words","textChars":38,"textLines":1,"bbox":[572,408,171,54]}
+{"kind":"shape","id":"sh/o3uhsn2l","slide":4,"name":"Google Shape;132;p6","bbox":[805,360,205,112]}
+{"kind":"shape","id":"sh/p4ni1sj6","slide":4,"name":"Google Shape;133;p6","bbox":[805,360,8,112]}
+{"kind":"textbox","id":"sh/exczmdkj","slide":4,"name":"Google Shape;134;p6","text":"Top memories","textPreview":"Top memories","textChars":12,"textLines":1,"bbox":[827,373,171,32]}
+{"kind":"textbox","id":"sh/fyl0vi14","slide":4,"name":"Google Shape;135;p6","text":"At most 6; weak matches removed","textPreview":"At most 6; weak matches removed","textChars":31,"textLines":1,"bbox":[827,408,171,54]}
+{"kind":"shape","id":"sh/gzuhon29","slide":4,"name":"Google Shape;136;p6","bbox":[1060,360,148,112]}
+{"kind":"shape","id":"sh/103ix8ju","slide":4,"name":"Google Shape;137;p6","bbox":[1060,360,8,112]}
+{"kind":"textbox","id":"sh/69szitk7","slide":4,"name":"Google Shape;138;p6","text":"Final LLM","textPreview":"Final LLM","textChars":9,"textLines":1,"bbox":[1082,373,114,32]}
+{"kind":"textbox","id":"sh/ra10ry1s","slide":4,"name":"Google Shape;139;p6","text":"Grounded answer","textPreview":"Grounded answer","textChars":15,"textLines":1,"bbox":[1082,408,114,54]}
+{"kind":"shape","id":"sh/jmlw3e5o","slide":4,"name":"Google Shape;140;p6","bbox":[44,520,1164,112]}
+{"kind":"textbox","id":"sh/ylcvu9o3","slide":4,"name":"Google Shape;141;p6","text":"The backend is the safety boundary","textPreview":"The backend is the safety boundary","textChars":34,"textLines":1,"bbox":[72,532,390,28]}
+{"kind":"textbox","id":"sh/lo3e54nu","slide":4,"name":"Google Shape;142;p6","text":"Before saving: required fields + exactly 768 embedding values. Before answering: correct user only, weak matches removed, duplicates removed, maximum 6 memories.","textPreview":"Before saving: required fields + exactly 768 embedding values. Before answering: correct user only, weak matches removed, duplicates remo...","textChars":161,"textLines":1,"bbox":[72,565,1108,48]}
+{"kind":"notes","id":"nt/73nxsx","slide":4,"text":"The first LLM converts source content into reusable memory. At query time the question is embedded, hybrid retrieval ranks the user's memories, and only the best six are sent to the final LLM for a grounded response.\n\n[Sources]\n- docs/04-rag-design.md\n- apps/backend/src/main/kotlin/com/impulse/backend/planning/MemoryRetrievalService.kt\n- apps/backend/src/main/kotlin/com/impulse/backend/planning/PlanningService.kt\n- apps/ai-service/memory_processor.py"}
+{"kind":"slide","id":"sl/9umpv1","slide":5,"title":"Future scope: richer inputs, faster retrieval, more control","textShapes":13}
+{"kind":"textbox","id":"sh/0f6l4vy9","slide":5,"name":"Google Shape;148;p7","text":"Future scope: richer inputs, faster retrieval, more control","textPreview":"Future scope: richer inputs, faster retrieval, more control","textChars":59,"textLines":1,"bbox":[42,28,1150,72]}
+{"kind":"textbox","id":"sh/lgf2x0fu","slide":5,"name":"Google Shape;149;p7","text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1188,660,50,22]}
+{"kind":"textbox","id":"sh/3qd4nq1g","slide":5,"name":"Google Shape;150;p7","text":"Add capability in stages without changing the core architecture","textPreview":"Add capability in stages without changing the core architecture","textChars":63,"textLines":1,"bbox":[44,102,880,30]}
+{"kind":"shape","id":"sh/2p43el0b","slide":5,"name":"Google Shape;151;p7","bbox":[44,172,270,250]}
+{"kind":"shape","id":"sh/pcvmp0jm","slide":5,"name":"Google Shape;152;p7","bbox":[44,172,8,250]}
+{"kind":"textbox","id":"sh/obmlgvi1","slide":5,"name":"Google Shape;153;p7","text":"1  Multimodal analysis","textPreview":"1  Multimodal analysis","textChars":22,"textLines":1,"bbox":[66,185,236,32]}
+{"kind":"textbox","id":"sh/bex4rq1s","slide":5,"name":"Google Shape;154;p7","text":"Transcribe audio\nAnalyze selected video frames\nRead on-screen text\nCombine speech, image and caption","textPreview":"Transcribe audio | Analyze selected video frames | Read on-screen text | Combine speech, image and caption","textChars":100,"textLines":4,"bbox":[66,220,236,192]}
+{"kind":"shape","id":"sh/qd43i507","slide":5,"name":"Google Shape;155;p7","bbox":[338,172,270,250]}
+{"kind":"shape","id":"sh/dgfmt0jy","slide":5,"name":"Google Shape;156;p7","bbox":[338,172,8,250]}
+{"kind":"textbox","id":"sh/cf6lkvid","slide":5,"name":"Google Shape;157;p7","text":"2  More sources","textPreview":"2  More sources","textChars":15,"textLines":1,"bbox":[360,185,236,32]}
+{"kind":"textbox","id":"sh/zix4fa1o","slide":5,"name":"Google Shape;158;p7","text":"Approved social integrations\nDocuments and podcasts\nPrivate sources with consent\nDuplicate and source-quality checks","textPreview":"Approved social integrations | Documents and podcasts | Private sources with consent | Duplicate and source-quality checks","textChars":116,"textLines":4,"bbox":[360,220,236,192]}
+{"kind":"shape","id":"sh/yho3m503","slide":5,"name":"Google Shape;159;p7","bbox":[632,172,270,250]}
+{"kind":"shape","id":"sh/uds7e9kb","slide":5,"name":"Google Shape;160;p7","bbox":[632,172,8,250]}
+{"kind":"textbox","id":"sh/ve1onelw","slide":5,"name":"Google Shape;161;p7","text":"3  Scale retrieval","textPreview":"3  Scale retrieval","textChars":18,"textLines":1,"bbox":[654,185,236,32]}
+{"kind":"textbox","id":"sh/wfapgj2h","slide":5,"name":"Google Shape;162;p7","text":"Async processing and retries\npgvector ANN search\nReranking and caching\nRe-embed when models improve","textPreview":"Async processing and retries | pgvector ANN search | Reranking and caching | Re-embed when models improve","textChars":99,"textLines":4,"bbox":[654,220,236,192]}
+{"kind":"shape","id":"sh/hgj6po32","slide":5,"name":"Google Shape;163;p7","bbox":[926,172,282,250]}
+{"kind":"shape","id":"sh/m987apkf","slide":5,"name":"Google Shape;164;p7","bbox":[926,172,8,250]}
+{"kind":"textbox","id":"sh/nahojul0","slide":5,"name":"Google Shape;165;p7","text":"4  User control","textPreview":"4  User control","textChars":15,"textLines":1,"bbox":[948,185,248,32]}
+{"kind":"textbox","id":"sh/8bqpcz2l","slide":5,"name":"Google Shape;166;p7","text":"Edit AI-generated tags\nFeedback on recommendations\nExplain why each source was used\nPrivacy and retention controls","textPreview":"Edit AI-generated tags | Feedback on recommendations | Explain why each source was used | Privacy and retention controls","textChars":114,"textLines":4,"bbox":[948,220,248,192]}
+{"kind":"shape","id":"sh/9cz6l436","slide":5,"name":"Google Shape;167;p7","bbox":[44,486,1164,112]}
+{"kind":"textbox","id":"sh/65c7mtkj","slide":5,"name":"Google Shape;168;p7","text":"The architecture stays the same","textPreview":"The architecture stays the same","textChars":31,"textLines":1,"bbox":[72,500,350,32]}
+{"kind":"textbox","id":"sh/r6lovyl4","slide":5,"name":"Google Shape;169;p7","text":"Capture → understand → embed → store → retrieve → generate. Future features improve each stage without breaking the trusted backend boundary.","textPreview":"Capture → understand → embed → store → retrieve → generate. Future features improve each stage without breaking the trusted backend bound...","textChars":141,"textLines":1,"bbox":[72,538,1080,46]}
+{"kind":"notes","id":"nt/9umpv1","slide":5,"text":"Future work adds audio and frame analysis, more approved sources, asynchronous processing, faster vector search, reranking, and stronger user controls. The core flow remains stable: understand, store, retrieve, then generate.\n\n[Sources]\n- docs/11-creatorbrain-impulse-progress.md\n- docs/08-link-ingestion-plan.md\n- docs/04-rag-design.md"}
+{"kind":"slide","id":"sl/vwc5uw","slide":6,"title":"IMPULSE • CREATORBRAIN","textShapes":5}
+{"kind":"textbox","id":"sh/03up8vap","slide":6,"name":"Google Shape;176;p8","text":"IMPULSE • CREATORBRAIN","textPreview":"IMPULSE • CREATORBRAIN","textChars":22,"textLines":1,"bbox":[44,52,400,30]}
+{"kind":"textbox","id":"sh/l43q10ra","slide":6,"name":"Google Shape;177;p8","text":"Questions?","textPreview":"Questions?","textChars":10,"textLines":1,"bbox":[44,214,560,92]}
+{"kind":"textbox","id":"sh/m5cra5sv","slide":6,"name":"Google Shape;178;p8","text":"Save once. Understand once.\nRetrieve whenever it matters.","textPreview":"Save once. Understand once. | Retrieve whenever it matters.","textChars":57,"textLines":2,"bbox":[44,328,560,96]}
+{"kind":"shape","id":"sh/n6l83q9g","slide":6,"name":"Google Shape;179;p8","bbox":[44,512,600,92]}
+{"kind":"textbox","id":"sh/7y14z2dw","slide":6,"name":"Google Shape;180;p8","text":"Capture → Understand → Embed → Retrieve → Answer","textPreview":"Capture → Understand → Embed → Retrieve → Answer","textChars":48,"textLines":1,"bbox":[72,532,544,48]}
+{"kind":"textbox","id":"sh/6xs36xwb","slide":6,"name":"Google Shape;181;p8","text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[672,660,40,22]}
+{"kind":"image","id":"im/knaxkjmt","slide":6,"name":"Google Shape;175;p8","bbox":[730,0,550,720]}
+{"kind":"notes","id":"nt/vwc5uw","slide":6,"text":"Impulse creates a reusable personal knowledge layer from content the user already values. Questions and feedback are welcome.\n\n[Sources]\n- Generated visual: OpenAI ImageGen; prompt recorded in task history."}

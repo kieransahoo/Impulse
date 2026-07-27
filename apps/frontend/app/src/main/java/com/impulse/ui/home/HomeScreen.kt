@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -56,19 +57,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.impulse.data.model.UserSession
+import com.impulse.data.model.UserCollectionResponse
+import coil.compose.AsyncImage
 import com.impulse.ui.theme.AccentContainer
-import com.impulse.ui.theme.DarkSurface
 import com.impulse.ui.theme.DividerColor
 import com.impulse.ui.theme.Hint
 import com.impulse.ui.theme.Ink
 import com.impulse.ui.theme.NeutralContainer
-import com.impulse.ui.theme.OnDarkMuted
 import com.impulse.ui.theme.Paper
 import com.impulse.ui.theme.Primary
 import com.impulse.ui.theme.Secondary
@@ -78,6 +81,7 @@ import com.impulse.ui.theme.SurfaceBright
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlinx.coroutines.delay
 
 @Composable
 fun HomeScreen(
@@ -91,6 +95,12 @@ fun HomeScreen(
 
     LaunchedEffect(session?.userId) {
         session?.let { viewModel.loadRecentUrls(it.userId) }
+    }
+    LaunchedEffect(uiState.message, uiState.error) {
+        if (uiState.message != null || uiState.error != null) {
+            delay(2_000)
+            viewModel.clearFeedback()
+        }
     }
 
     Scaffold(
@@ -119,9 +129,29 @@ fun HomeScreen(
                 item { FeedbackCard(message, error = false) }
             }
             if (uiState.collections.isNotEmpty()) {
-                item { SectionHeader("COLLECTIONS", "Your collections", "${uiState.collections.size} total") }
-                items(uiState.collections, key = { "collection-${it.id}" }) { collection ->
-                    CollectionCard(collection)
+                item {
+                    CollectionGalleryHeader(
+                        count = uiState.collections.size,
+                        onNew = { showCapture = true }
+                    )
+                }
+                items(
+                    uiState.collections.chunked(2),
+                    key = { row -> row.joinToString("-") { it.id } }
+                ) { row ->
+                    Row(
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        row.forEach { collection ->
+                            CollectionGalleryCard(
+                                collection = collection,
+                                memories = uiState.memories,
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
+                        if (row.size == 1) Spacer(Modifier.weight(1f))
+                    }
                 }
             }
             item {
@@ -264,20 +294,22 @@ private fun MemorySummary(count: Int) {
     Card(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 24.dp),
         shape = RoundedCornerShape(22.dp),
-        colors = CardDefaults.cardColors(containerColor = DarkSurface)
+        colors = CardDefaults.cardColors(containerColor = Surface),
+        border = BorderStroke(1.dp, DividerColor.copy(alpha = .65f)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
     ) {
         Row(
             modifier = Modifier.fillMaxWidth().padding(22.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(Modifier.weight(1f)) {
-                Text("YOUR MEMORY SPACE", style = MaterialTheme.typography.labelSmall, color = Secondary)
+                Text("YOUR MEMORY SPACE", style = MaterialTheme.typography.labelSmall, color = Primary)
                 Spacer(Modifier.height(8.dp))
-                Text("$count memories ready", style = MaterialTheme.typography.titleLarge, color = Color.White)
-                Text("Saved knowledge is ready to use.", style = MaterialTheme.typography.bodySmall, color = OnDarkMuted)
+                Text("$count memories ready", style = MaterialTheme.typography.titleLarge, color = Ink)
+                Text("Saved knowledge is ready to use.", style = MaterialTheme.typography.bodySmall, color = Hint)
             }
             Box(
-                modifier = Modifier.size(52.dp).clip(CircleShape).background(Secondary),
+                modifier = Modifier.size(52.dp).clip(CircleShape).background(AccentContainer),
                 contentAlignment = Alignment.Center
             ) {
                 Icon(Icons.Default.Link, contentDescription = null, tint = Ink)
@@ -338,23 +370,94 @@ private fun MemoryCard(item: SharedUrlItem) {
 }
 
 @Composable
-private fun CollectionCard(collection: com.impulse.data.model.UserCollectionResponse) {
+private fun CollectionGalleryHeader(count: Int, onNew: () -> Unit) {
+    Row(
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 12.dp),
+        verticalAlignment = Alignment.Bottom
+    ) {
+        Column(Modifier.weight(1f)) {
+            EditorialLabel("COLLECTIONS")
+            Text("Saved collections", style = MaterialTheme.typography.titleLarge)
+            Text("Only you can see what you have saved", style = MaterialTheme.typography.bodySmall, color = Hint)
+        }
+        TextButton(onClick = onNew) {
+            Icon(Icons.Default.Add, contentDescription = null, tint = Primary)
+            Text("New", color = Primary)
+        }
+    }
+}
+
+@Composable
+private fun CollectionGalleryCard(
+    collection: UserCollectionResponse,
+    memories: List<SharedUrlItem>,
+    modifier: Modifier = Modifier
+) {
+    val memoryById = memories.associateBy { it.id }
+    val covers = collection.sources.mapNotNull { source ->
+        source.memoryId?.let(memoryById::get)?.thumbnailUrl
+    }.distinct().take(4)
+
     Card(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 6.dp),
+        modifier = modifier.padding(vertical = 6.dp).aspectRatio(.82f),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = Surface),
-        border = BorderStroke(1.dp, DividerColor)
+        border = BorderStroke(1.dp, DividerColor.copy(alpha = .65f)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
     ) {
-        Column(Modifier.padding(16.dp)) {
-            Text(collection.name, style = MaterialTheme.typography.titleMedium)
-            collection.description?.takeIf(String::isNotBlank)?.let {
-                Text(it, style = MaterialTheme.typography.bodySmall, color = Hint)
+        Box(Modifier.fillMaxSize()) {
+            if (covers.isEmpty()) {
+                Box(
+                    Modifier.fillMaxSize().background(
+                        Brush.linearGradient(listOf(Primary.copy(alpha = .85f), Ink))
+                    )
+                )
+                Text(
+                    collection.name.take(1).uppercase(),
+                    modifier = Modifier.align(Alignment.Center),
+                    color = Color.White.copy(alpha = .35f),
+                    fontFamily = androidx.compose.ui.text.font.FontFamily.Serif,
+                    fontSize = 72.sp,
+                    fontStyle = FontStyle.Italic
+                )
+            } else {
+                CollectionCoverCollage(covers)
             }
-            Spacer(Modifier.height(10.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                StatusPill("${collection.processedSources} ready", SuccessColor, com.impulse.ui.theme.SuccessContainer)
-                if (collection.failedSources > 0) {
-                    StatusPill("${collection.failedSources} need attention", com.impulse.ui.theme.ErrorColor, com.impulse.ui.theme.ErrorContainer)
+            Box(
+                Modifier.fillMaxSize().background(
+                    Brush.verticalGradient(
+                        listOf(Color.Transparent, Color.Transparent, Color.Black.copy(alpha = .82f))
+                    )
+                )
+            )
+            Column(
+                modifier = Modifier.align(Alignment.BottomStart).padding(14.dp)
+            ) {
+                Text(
+                    collection.name,
+                    color = Color.White,
+                    style = MaterialTheme.typography.titleLarge,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    "${collection.processedSources} saved",
+                    color = Color.White.copy(alpha = .72f),
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
+            if (collection.failedSources > 0) {
+                Surface(
+                    modifier = Modifier.align(Alignment.TopEnd).padding(9.dp),
+                    color = com.impulse.ui.theme.ErrorContainer,
+                    shape = RoundedCornerShape(100.dp)
+                ) {
+                    Text(
+                        "${collection.failedSources} issue",
+                        color = com.impulse.ui.theme.ErrorColor,
+                        style = MaterialTheme.typography.labelSmall,
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 5.dp)
+                    )
                 }
             }
         }
@@ -362,9 +465,32 @@ private fun CollectionCard(collection: com.impulse.data.model.UserCollectionResp
 }
 
 @Composable
-private fun StatusPill(text: String, textColor: Color, background: Color) {
-    Surface(color = background, shape = RoundedCornerShape(100.dp)) {
-        Text(text, style = MaterialTheme.typography.bodySmall, color = textColor, modifier = Modifier.padding(horizontal = 9.dp, vertical = 5.dp))
+private fun CollectionCoverCollage(urls: List<String>) {
+    if (urls.size == 1) {
+        AsyncImage(
+            model = urls.first(),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
+        return
+    }
+    Column(Modifier.fillMaxSize()) {
+        urls.chunked(2).take(2).forEach { row ->
+            Row(Modifier.weight(1f)) {
+                row.forEach { url ->
+                    AsyncImage(
+                        model = url,
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.weight(1f).fillMaxSize()
+                    )
+                }
+                if (row.size == 1) {
+                    Box(Modifier.weight(1f).fillMaxSize().background(NeutralContainer))
+                }
+            }
+        }
     }
 }
 

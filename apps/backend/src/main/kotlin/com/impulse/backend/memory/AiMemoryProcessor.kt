@@ -8,6 +8,7 @@ import org.springframework.web.client.RestClient
 import org.springframework.web.client.RestClientException
 import org.springframework.web.client.RestClientResponseException
 import tools.jackson.databind.ObjectMapper
+import java.time.Duration
 
 data class AiMemoryRequest(
     val sourceUrl: String,
@@ -52,7 +53,12 @@ class HttpAiMemoryProcessor(
 ) : AiMemoryProcessor {
     private val client = RestClient.builder()
         .baseUrl(properties.baseUrl)
-        .requestFactory(SimpleClientHttpRequestFactory())
+        .requestFactory(
+            SimpleClientHttpRequestFactory().apply {
+                setConnectTimeout(Duration.ofSeconds(5))
+                setReadTimeout(Duration.ofSeconds(60))
+            },
+        )
         .build()
 
     override fun process(request: AiMemoryRequest): AiMemoryResult =

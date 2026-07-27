@@ -130,3 +130,45 @@ def test_extractive_plan_fallback_stays_grounded_in_retrieved_memory():
 
     assert plan.goal == "Plan my work session"
     assert plan.plan[0].memoryIds == ["memory-1"]
+    assert plan.plan[0].sourceType == "MEMORY"
+
+
+def test_general_starter_fallback_is_explicitly_labelled():
+    request = PlanRequest(
+        query="Create a study plan",
+        memories=[],
+        allowGeneralKnowledge=True,
+        groundingStatus="NO_GROUNDING",
+    )
+
+    plan = MemoryProcessor._extractive_plan(request)
+
+    assert plan.plan
+    assert all(step.sourceType == "GENERAL" for step in plan.plan)
+    assert all(not step.memoryIds for step in plan.plan)
+
+
+def test_embedding_document_excludes_full_source_content():
+    request = MemoryProcessRequest(
+        sourceUrl="https://example.com/large",
+        platform="WEB",
+        userNote="Keep this",
+    )
+    source = ExtractedSource(
+        title="Large page",
+        description="Description",
+        content="SENSITIVE_FULL_SOURCE " * 1_000,
+    )
+    memory = StructuredMemory(
+        title="Compact memory",
+        summary="Reusable summary",
+        category="Learning",
+        topics=["retrieval"],
+        actions=[MemoryAction(action="Practice retrieval")],
+    )
+
+    document = MemoryProcessor._document(request, source, memory)
+
+    assert "Reusable summary" in document
+    assert "Practice retrieval" in document
+    assert "SENSITIVE_FULL_SOURCE" not in document

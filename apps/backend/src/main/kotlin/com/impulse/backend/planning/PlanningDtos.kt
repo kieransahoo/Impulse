@@ -14,21 +14,52 @@ data class CreatePlanRequest(
     val query: String,
 
     val constraints: Map<String, Any?> = emptyMap(),
+
+    val allowGeneralKnowledge: Boolean = false,
 )
+
+enum class PlanIntent {
+    STUDY,
+    WORKOUT,
+    MEAL,
+    ROOM,
+    PRODUCT,
+    OUTING,
+    LEARNING,
+    PROJECT,
+    ROUTINE,
+    GENERAL,
+}
+
+enum class GroundingStatus {
+    STRONG_GROUNDING,
+    PARTIAL_GROUNDING,
+    NO_GROUNDING,
+}
+
+enum class PlanSourceType {
+    MEMORY,
+    GENERAL,
+}
 
 data class PlanStepResponse(
     val step: String,
     val durationMinutes: Int?,
     val reason: String?,
     val memoryIds: List<UUID>,
+    val sourceType: PlanSourceType,
 )
 
 data class CreatePlanResponse(
+    val intent: PlanIntent,
+    val groundingStatus: GroundingStatus,
     val goal: String,
     val explanation: String,
     val plan: List<PlanStepResponse>,
     val retrievedMemoryIds: List<UUID>,
     val groundingMemories: List<GroundingMemoryResponse>,
+    val missingContext: List<String> = emptyList(),
+    val suggestedSources: List<String> = emptyList(),
 )
 
 data class GroundingMemoryResponse(
@@ -47,6 +78,10 @@ data class AiPlanRequest(
     val query: String,
     val memories: List<AiPlanningMemory>,
     val constraints: Map<String, Any?>,
+    val intent: PlanIntent,
+    val groundingStatus: GroundingStatus,
+    val allowGeneralKnowledge: Boolean,
+    val missingContext: List<String>,
 )
 
 data class AiPlanningMemory(
@@ -77,4 +112,5 @@ data class AiPlanStep(
     val durationMinutes: Int?,
     val reason: String?,
     val memoryIds: List<String> = emptyList(),
+    val sourceType: PlanSourceType = PlanSourceType.MEMORY,
 )

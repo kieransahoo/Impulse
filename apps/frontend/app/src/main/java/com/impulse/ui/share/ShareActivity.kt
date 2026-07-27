@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -23,6 +24,8 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -41,6 +44,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -51,8 +56,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -72,6 +79,7 @@ import com.impulse.ui.theme.Primary
 import com.impulse.ui.theme.Secondary
 import com.impulse.ui.theme.Surface
 import com.impulse.ui.theme.SurfaceBright
+import com.impulse.ui.component.NewCollectionAction
 import com.impulse.utils.extractUrl
 import com.impulse.utils.isValidUrl
 
@@ -92,7 +100,11 @@ class ShareActivity : ComponentActivity() {
                         finish()
                     },
                     onSaved = {
-                        Toast.makeText(this, "Saved to your memory", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "Saved. Creating your memory in the background.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         finish()
                     }
                 )
@@ -112,6 +124,8 @@ private fun ShareCaptureScreen(
 ) {
     val state by viewModel.state.collectAsState()
     var note by remember { mutableStateOf("") }
+    var showNewCollection by remember { mutableStateOf(false) }
+    val keyboard = LocalSoftwareKeyboardController.current
 
     LaunchedEffect(userId) {
         userId?.let(viewModel::load)
@@ -126,6 +140,7 @@ private fun ShareCaptureScreen(
             .background(Paper)
             .statusBarsPadding()
             .navigationBarsPadding()
+            .imePadding()
             .verticalScroll(rememberScrollState())
             .padding(20.dp)
     ) {
@@ -176,12 +191,25 @@ private fun ShareCaptureScreen(
             return@Column
         }
 
-        Text("COLLECTION", style = MaterialTheme.typography.labelSmall, color = Primary)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                "COLLECTION",
+                style = MaterialTheme.typography.labelSmall,
+                color = Primary,
+                modifier = Modifier.weight(1f)
+            )
+            NewCollectionAction(showNewCollection) {
+                showNewCollection = !showNewCollection
+            }
+        }
         Spacer(Modifier.height(9.dp))
         CollectionChoice(
             name = "ALL",
             description = "Default · Everything you save",
-            selected = state.selectedCollectionId == null,
+            selected = state.selectedCollectionId == null && state.newCollectionName == null,
             onClick = { viewModel.select(null) }
         )
         if (state.loading) {
@@ -198,6 +226,14 @@ private fun ShareCaptureScreen(
                 )
             }
         }
+        state.newCollectionName?.let { name ->
+            CollectionChoice(
+                name = name,
+                description = "New · This link will be its first memory",
+                selected = true,
+                onClick = { showNewCollection = true }
+            )
+        }
 
         Spacer(Modifier.height(18.dp))
         OutlinedTextField(
@@ -207,6 +243,8 @@ private fun ShareCaptureScreen(
             placeholder = { Text("Why do you want to remember this?") },
             modifier = Modifier.fillMaxWidth(),
             minLines = 2,
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+            keyboardActions = KeyboardActions(onDone = { keyboard?.hide() }),
             shape = RoundedCornerShape(13.dp),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = SurfaceBright,
@@ -222,7 +260,10 @@ private fun ShareCaptureScreen(
         }
         Spacer(Modifier.height(22.dp))
         Button(
-            onClick = { viewModel.save(userId, url, note.trim().ifBlank { null }) },
+            onClick = {
+                keyboard?.hide()
+                viewModel.save(userId, url, note.trim().ifBlank { null })
+            },
             enabled = !state.saving && !state.loading,
             modifier = Modifier.fillMaxWidth().height(54.dp),
             shape = RoundedCornerShape(12.dp),
@@ -232,7 +273,8 @@ private fun ShareCaptureScreen(
                 CircularProgressIndicator(Modifier.size(20.dp), color = Color.White, strokeWidth = 2.dp)
             } else {
                 Text(
-                    if (state.selectedCollectionId == null) "Save to ALL"
+                    if (state.newCollectionName != null) "Create & save"
+                    else if (state.selectedCollectionId == null) "Save to ALL"
                     else "Save to collection",
                     modifier = Modifier.weight(1f)
                 )
@@ -244,6 +286,16 @@ private fun ShareCaptureScreen(
             style = MaterialTheme.typography.bodySmall,
             color = Hint,
             modifier = Modifier.padding(top = 12.dp)
+        )
+    }
+
+    if (showNewCollection) {
+        NewCollectionDialog(
+            onDismiss = { showNewCollection = false },
+            onCreate = {
+                viewModel.selectNewCollection(it)
+                showNewCollection = false
+            }
         )
     }
 }
@@ -262,7 +314,11 @@ private fun CollectionChoice(
         border = BorderStroke(1.dp, if (selected) Ink else DividerColor)
     ) {
         Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
-            Icon(Icons.Default.Folder, contentDescription = null, tint = if (selected) Ink else Primary)
+            Icon(
+                Icons.Default.Folder,
+                contentDescription = null,
+                tint = if (selected) Ink else Primary
+            )
             Spacer(Modifier.size(12.dp))
             Column(Modifier.weight(1f)) {
                 Text(name, style = MaterialTheme.typography.titleMedium)
@@ -279,6 +335,48 @@ private fun CollectionChoice(
             }
         }
     }
+}
+
+@Composable
+private fun NewCollectionDialog(
+    onDismiss: () -> Unit,
+    onCreate: (String) -> Unit
+) {
+    var name by remember { mutableStateOf("") }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("New collection", style = MaterialTheme.typography.titleLarge) },
+        text = {
+            Column {
+                Text(
+                    "This shared link will become the first memory in your new collection.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = Hint
+                )
+                Spacer(Modifier.height(12.dp))
+                OutlinedTextField(
+                    value = name,
+                    onValueChange = { name = it.take(200) },
+                    label = { Text("Collection name") },
+                    placeholder = { Text("Weekend trip ideas") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(13.dp)
+                )
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = { onCreate(name) },
+                enabled = name.trim().length >= 2,
+                colors = ButtonDefaults.buttonColors(containerColor = Primary)
+            ) { Text("Create") }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text("Cancel") }
+        },
+        containerColor = Surface
+    )
 }
 
 @Composable

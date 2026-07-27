@@ -85,6 +85,50 @@ class HomeViewModel : ViewModel() {
     fun clearFeedback() {
         _uiState.value = _uiState.value.copy(message = null, error = null)
     }
+
+    fun updateCollection(
+        userId: String,
+        collectionId: String,
+        name: String,
+        description: String?
+    ) {
+        viewModelScope.launch {
+            repository.updateCollection(userId, collectionId, name, description).fold(
+                onSuccess = { loadRecentUrls(userId) },
+                onFailure = {
+                    _uiState.value = _uiState.value.copy(
+                        error = it.localizedMessage ?: "Could not update this collection."
+                    )
+                }
+            )
+        }
+    }
+
+    fun deleteCollection(userId: String, collectionId: String) {
+        viewModelScope.launch {
+            repository.deleteCollection(userId, collectionId).fold(
+                onSuccess = { loadRecentUrls(userId) },
+                onFailure = {
+                    _uiState.value = _uiState.value.copy(
+                        error = it.localizedMessage ?: "Could not delete this collection."
+                    )
+                }
+            )
+        }
+    }
+
+    fun removeSource(userId: String, collectionId: String, sourceId: String) {
+        viewModelScope.launch {
+            repository.removeSource(userId, collectionId, sourceId).fold(
+                onSuccess = { loadRecentUrls(userId) },
+                onFailure = {
+                    _uiState.value = _uiState.value.copy(
+                        error = it.localizedMessage ?: "Could not remove this source."
+                    )
+                }
+            )
+        }
+    }
 }
 
 private fun MemoryResponse.toUiItem() = SharedUrlItem(

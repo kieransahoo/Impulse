@@ -1,0 +1,555 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/y90nupkv",
+    "id": "y90nupkv",
+    "slide": 1,
+    "layoutId": "/ppt/slideLayouts/slideLayout1.xml",
+    "layoutName": "TITLE",
+    "layoutType": "title",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "backgroundColor": "#F7F5EF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Arial",
+      "Georgia"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout1.xml",
+      "name": "TITLE",
+      "type": "title",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/dgvyd8fa",
+      "id": "23",
+      "name": "Google Shape;16;p3",
+      "bbox": [
+        560,
+        0,
+        720,
+        720
+      ],
+      "contentType": "image/png",
+      "imageCrop": {
+        "left": 0.2186,
+        "top": 0,
+        "right": 0.2186,
+        "bottom": 0
+      },
+      "asset": {
+        "assetId": "/ppt/media/image.png",
+        "contentType": "image/png",
+        "byteLength": 1532782
+      },
+      "fillImage": {
+        "assetId": "/ppt/media/image.png",
+        "contentType": "image/png",
+        "byteLength": 1532782
+      }
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3qxwn2x8",
+      "id": "17",
+      "name": "Google Shape;17;p3",
+      "bbox": [
+        88,
+        48,
+        456,
+        34
+      ],
+      "geometry": "rect",
+      "text": "IMPULSE • PERSONAL KNOWLEDGE + PLANNING",
+      "textPreview": "IMPULSE • PERSONAL KNOWLEDGE + PLANNING",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "IMPULSE • PERSONAL KNOWLEDGE + PLANNING"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "IMPULSE • PERSONAL KNOWLEDGE + PLANNING",
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "IMPULSE • PERSONAL KNOWLEDGE + PLANNING",
+              "fontSize": 17,
+              "typeface": "Arial",
+              "color": "#CC4824",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sfqdkrep",
+      "id": "18",
+      "name": "Google Shape;18;p3",
+      "bbox": [
+        44,
+        154,
+        470,
+        82
+      ],
+      "geometry": "rect",
+      "text": "Impulse",
+      "textPreview": "Impulse",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Impulse"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Impulse",
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Impulse",
+              "fontSize": 60.33,
+              "typeface": "Georgia",
+              "color": "#24231F"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dgzetcfa",
+      "id": "19",
+      "name": "Google Shape;19;p3",
+      "bbox": [
+        44,
+        240,
+        500,
+        120
+      ],
+      "geometry": "rect",
+      "text": "Save once. Understand once.\nUse it when it matters.",
+      "textPreview": "Save once. Understand once. | Use it when it matters.",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Save once. Understand once."
+          },
+          {
+            "index": 2,
+            "text": "Use it when it matters."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Save once. Understand once.",
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Save once. Understand once.",
+              "fontSize": 36,
+              "typeface": "Georgia",
+              "color": "#24231F"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 2,
+          "text": "Use it when it matters.",
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Use it when it matters.",
+              "fontSize": 36,
+              "typeface": "Georgia",
+              "color": "#24231F"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1cvuxc7e",
+      "id": "20",
+      "name": "Google Shape;20;p3",
+      "bbox": [
+        44,
+        382,
+        490,
+        90
+      ],
+      "geometry": "rect",
+      "text": "Saved videos, posts and web pages become searchable memories, grounded answers and practical plans.",
+      "textPreview": "Saved videos, posts and web pages become searchable memories, grounded answers and practical plans.",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Saved videos, posts and web pages become"
+          },
+          {
+            "index": 2,
+            "text": "searchable memories, grounded answers and"
+          },
+          {
+            "index": 3,
+            "text": "practical plans."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Saved videos, posts and web pages become searchable memories, grounded answers and practical plans.",
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Saved videos, posts and web pages become searchable memories, grounded answers and practical plans.",
+              "fontSize": 22,
+              "typeface": "Arial",
+              "color": "#6D6A63"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0bmd476t",
+      "id": "21",
+      "name": "Google Shape;21;p3",
+      "bbox": [
+        44,
+        548,
+        90,
+        24
+      ],
+      "geometry": "rect",
+      "text": "TEAM",
+      "textPreview": "TEAM",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "TEAM"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "TEAM",
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "TEAM",
+              "fontSize": 12,
+              "typeface": "Arial",
+              "color": "#CC4824",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zadcv2p8",
+      "id": "22",
+      "name": "Google Shape;22;p3",
+      "bbox": [
+        44,
+        576,
+        490,
+        54
+      ],
+      "geometry": "rect",
+      "text": "Kiran Kumar Sahoo  •  Apurvaa Avinandita  •  Jagadheshvar B P",
+      "textPreview": "Kiran Kumar Sahoo  •  Apurvaa Avinandita  •  Jagadheshvar B P",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Kiran Kumar Sahoo  •  Apurvaa Avinandita  •"
+          },
+          {
+            "index": 2,
+            "text": "Jagadheshvar B P"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Kiran Kumar Sahoo  •  Apurvaa Avinandita  •  Jagadheshvar B P",
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Kiran Kumar Sahoo  •  Apurvaa Avinandita  •  Jagadheshvar B P",
+              "fontSize": 17,
+              "typeface": "Arial",
+              "color": "#24231F",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/eh4fmdgv",
+      "id": "24",
+      "bbox": [
+        44,
+        46,
+        36,
+        36
+      ],
+      "alt": "Impulse app icon: white italic I on a near-black rounded square",
+      "contentType": "image/svg+xml",
+      "imageFit": "contain",
+      "asset": {
+        "assetId": "3afa677c-9f49-4107-a7e3-4f6774ee5c49",
+        "contentType": "image/svg+xml",
+        "byteLength": 232
+      }
+    }
+  ],
+  "composeRuns": []
+}

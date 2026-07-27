@@ -10,8 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.impulse.data.local.SessionManager
 import com.impulse.ui.auth.LoginScreen
-import com.impulse.ui.chat.ChatScreen
-import com.impulse.ui.home.HomeScreen
+import com.impulse.ui.main.MainScreen
 import com.impulse.data.repository.AuthRepository
 import kotlinx.coroutines.launch
 
@@ -20,7 +19,6 @@ import kotlinx.coroutines.launch
 sealed class Screen(val route: String) {
     object Login : Screen("login")
     object Home  : Screen("home")
-    object Chat  : Screen("chat")
 }
 
 // ─── Root nav graph ───────────────────────────────────────────────────────────
@@ -50,29 +48,27 @@ fun AppNavigation(navController: NavHostController = rememberNavController()) {
         // ── Home ──────────────────────────────────────────────────────────────
         composable(Screen.Home.route) {
             val session = remember { sessionManager.getSession() }
-            HomeScreen(
-                session          = session,
-                onNavigateToChat = { navController.navigate(Screen.Chat.route) },
-                onSignOut        = {
-                    val token = sessionManager.getIdToken()
-                    scope.launch {
-                        authRepository.logout(token)
-                        sessionManager.clearSession()
-                        navController.navigate(Screen.Login.route) {
-                            popUpTo(Screen.Home.route) { inclusive = true }
+            if (session != null) {
+                MainScreen(
+                    session = session,
+                    onSignOut = {
+                        val token = sessionManager.getIdToken()
+                        scope.launch {
+                            authRepository.logout(token)
+                            sessionManager.clearSession()
+                            navController.navigate(Screen.Login.route) {
+                                popUpTo(Screen.Home.route) { inclusive = true }
+                            }
                         }
                     }
+                )
+            } else {
+                androidx.compose.runtime.LaunchedEffect(Unit) {
+                    navController.navigate(Screen.Login.route) {
+                        popUpTo(Screen.Home.route) { inclusive = true }
+                    }
                 }
-            )
-        }
-
-        // ── Chat ──────────────────────────────────────────────────────────────
-        composable(Screen.Chat.route) {
-            val session = remember { sessionManager.getSession() }
-            ChatScreen(
-                userId = session?.userId.orEmpty(),
-                onNavigateBack = { navController.popBackStack() }
-            )
+            }
         }
     }
 }

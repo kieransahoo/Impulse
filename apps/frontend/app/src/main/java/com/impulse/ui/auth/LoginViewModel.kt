@@ -28,8 +28,12 @@ class LoginViewModel : ViewModel() {
         authenticate(context, email, null, password)
     }
 
-    fun register(context: Context, email: String, password: String) {
-        authenticate(context, email, email.substringBefore("@").ifBlank { "User" }, password)
+    fun register(context: Context, email: String, displayName: String, password: String) {
+        if (displayName.trim().length < 2) {
+            _uiState.value = LoginUiState.Error("Enter your name using at least 2 characters.")
+            return
+        }
+        authenticate(context, email, displayName.trim(), password)
     }
 
     private fun authenticate(

@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "checkedAt": "2026-07-24T10:48:34.437Z",
+  "workspace": "/Users/kieransahoo/Ipsator/Impulse/artifacts/impulse-logo-edit",
+  "finalPptx": "/Users/kieransahoo/Ipsator/Impulse/Impulse_AI_PPT_With_Logo.pptx",
+  "starterPptx": "/Users/kieransahoo/Ipsator/Impulse/artifacts/impulse-logo-edit/template-starter.pptx",
+  "mapPath": "/Users/kieransahoo/Ipsator/Impulse/artifacts/impulse-logo-edit/template-frame-map.json",
+  "starterLayoutDir": "/Users/kieransahoo/Ipsator/Impulse/artifacts/impulse-logo-edit/template-starter-layout",
+  "finalLayoutDir": "/Users/kieransahoo/Ipsator/Impulse/artifacts/impulse-logo-edit/final-render",
+  "editDir": "/Users/kieransahoo/Ipsator/Impulse/artifacts/impulse-logo-edit",
+  "issueCount": 0,
+  "issues": []
+}
